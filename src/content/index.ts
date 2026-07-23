@@ -11,3 +11,5 @@ export * from "./mapToCityPage";
 export * from "./registry";
 export * from "./provinceRegistry";
 export * from "./cityRegistry";
+export * from "./cityGenerator";
+export * from "./masterCsv";

@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "validate:master-csv": "node --experimental-strip-types scripts/validate-master-csv.ts",
+    "build:master-csv": "node --experimental-strip-types scripts/build-master-csv.ts"
   },
   "dependencies": {
     "astro": "^7.1.3"
