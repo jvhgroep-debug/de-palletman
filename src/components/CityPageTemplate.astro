@@ -1,0 +1,125 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageBreadcrumbs from "./PageBreadcrumbs.astro";
+import PageHero from "./PageHero.astro";
+import PageIntro from "./PageIntro.astro";
+import PageTextSection from "./PageTextSection.astro";
+import PageContent from "./PageContent.astro";
+import PageProcess from "./PageProcess.astro";
+import PageFaq from "./PageFaq.astro";
+import PageCta from "./PageCta.astro";
+import PageInternalLinks from "./PageInternalLinks.astro";
+import type { CityContentMaster } from "../content/cityTypes";
+import { mapContentMasterToCityPage } from "../content/mapToCityPage";
+import { resolveCityPageSeo } from "../content/buildCitySeo";
+
+interface Props {
+  page: CityContentMaster;
+}
+
+const { page } = Astro.props;
+
+const content = mapContentMasterToCityPage(page);
+const seo = resolveCityPageSeo(page);
+---
+
+<PageLayout
+  title={seo.metaTitle}
+  description={seo.metaDescription}
+  canonical={seo.canonical}
+  ogTitle={seo.openGraph.title}
+  ogDescription={seo.openGraph.description}
+  ogImage={seo.openGraph.image}
+  schema={seo.schema}
+  currentPath={content.path}
+>
+  <PageBreadcrumbs items={content.breadcrumbs} />
+
+  <PageHero
+    eyebrow={content.hero.eyebrow}
+    title={content.hero.title}
+    subtitle={content.hero.subtitle}
+    imageFilename={content.hero.imageFilename}
+  />
+
+  <PageIntro
+    eyebrow={content.intro.eyebrow}
+    title={content.intro.title}
+    text={content.intro.text}
+  />
+
+  <PageTextSection
+    id={content.palletsBuy.id}
+    eyebrow={content.palletsBuy.eyebrow ?? "Voor bedrijven"}
+    title={content.palletsBuy.title}
+    text={content.palletsBuy.text}
+    variant="gray"
+  />
+
+  <PageTextSection
+    id={content.palletsSell.id}
+    eyebrow={content.palletsSell.eyebrow ?? "Inkoop"}
+    title={content.palletsSell.title}
+    text={content.palletsSell.text}
+  />
+
+  <PageContent
+    id={content.palletTypes.id}
+    eyebrow={content.palletTypes.eyebrow}
+    title={content.palletTypes.title}
+    intro={content.palletTypes.intro}
+    columns={content.palletTypes.columns ?? 3}
+    items={content.palletTypes.items}
+  />
+
+  <PageContent
+    id={content.transport.id}
+    eyebrow={content.transport.eyebrow}
+    title={content.transport.title}
+    intro={content.transport.intro}
+    variant={content.transport.variant ?? "white"}
+    columns={content.transport.columns ?? 2}
+    items={content.transport.items}
+  />
+
+  <PageContent
+    id={content.industrialAreas.id}
+    eyebrow={content.industrialAreas.eyebrow}
+    title={content.industrialAreas.title}
+    intro={content.industrialAreas.intro}
+    columns={content.industrialAreas.columns ?? 3}
+    items={content.industrialAreas.items}
+  />
+
+  <PageContent
+    id={content.surroundingPlaces.id}
+    eyebrow={content.surroundingPlaces.eyebrow}
+    title={content.surroundingPlaces.title}
+    intro={content.surroundingPlaces.intro}
+    variant={content.surroundingPlaces.variant ?? "white"}
+    columns={content.surroundingPlaces.columns ?? 3}
+    items={content.surroundingPlaces.items}
+  />
+
+  <PageProcess steps={content.processSteps} />
+
+  <PageFaq
+    id={content.faq.id}
+    eyebrow={content.faq.eyebrow}
+    title={content.faq.title}
+    intro={content.faq.intro}
+    variant="white"
+    items={content.faq.items}
+  />
+
+  <PageCta
+    title={content.cta.title}
+    text={content.cta.text}
+    primaryLabel={content.cta.primaryLabel}
+    primaryHref={content.cta.primaryHref}
+    secondaryLabel={content.cta.secondaryLabel}
+    secondaryHref={content.cta.secondaryHref}
+  />
+
+  <PageInternalLinks links={content.internalLinks} />
+</PageLayout>

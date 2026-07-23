@@ -1,0 +1,106 @@
+---
+interface InternalLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  links: InternalLink[];
+  title?: string;
+  intro?: string;
+  id?: string;
+}
+
+const {
+  links,
+  title = "Gerelateerde pagina's",
+  intro = "Meer informatie over onze diensten en regio's.",
+  id = "interne-links-heading",
+} = Astro.props;
+---
+
+<section class="page-internal-links" aria-labelledby={id}>
+  <div class="page-internal-links__inner container">
+    <header class="page-internal-links__header">
+      <h2 id={id} class="page-internal-links__title">{title}</h2>
+      {intro && <p class="page-internal-links__intro">{intro}</p>}
+    </header>
+    <ul class="page-internal-links__list">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class="page-internal-links__link">
+              {link.label}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .page-internal-links {
+    padding-block: var(--space-2xl) var(--space-3xl);
+    background-color: var(--color-gray-50);
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .page-internal-links__header {
+    max-width: 720px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .page-internal-links__title {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-internal-links__intro {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+  }
+
+  .page-internal-links__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-internal-links__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: color var(--transition-fast), border-color var(--transition-fast),
+      gap var(--transition-fast);
+  }
+
+  .page-internal-links__link:hover {
+    color: var(--color-blue);
+    border-color: var(--color-blue);
+    gap: var(--space-md);
+  }
+</style>

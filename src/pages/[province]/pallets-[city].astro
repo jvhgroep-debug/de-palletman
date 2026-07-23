@@ -1,0 +1,17 @@
+---
+import CityPageTemplate from "../../components/CityPageTemplate.astro";
+import { cityStaticPaths } from "../../content/cityRegistry";
+import type { CityContentMaster } from "../../content/cityTypes";
+
+export function getStaticPaths() {
+  return cityStaticPaths;
+}
+
+interface Props {
+  page: CityContentMaster;
+}
+
+const { page } = Astro.props;
+---
+
+<CityPageTemplate page={page} />

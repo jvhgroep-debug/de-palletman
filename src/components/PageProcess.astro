@@ -1,0 +1,173 @@
+---
+interface ProcessStep {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  steps: ProcessStep[];
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  id?: string;
+}
+
+const {
+  steps,
+  eyebrow = "Onze werkwijze",
+  title = "In vier stappen geregeld",
+  intro = "Van eerste contact tot levering — zo pakken wij het aan.",
+  id = "werkwijze-heading",
+} = Astro.props;
+---
+
+<section class="page-process" aria-labelledby={id}>
+  <div class="page-process__inner container">
+    <header class="page-process__header">
+      <p class="page-process__eyebrow">{eyebrow}</p>
+      <h2 id={id} class="page-process__title">{title}</h2>
+      {intro && <p class="page-process__intro">{intro}</p>}
+    </header>
+
+    <ol class="page-process__timeline">
+      {
+        steps.map((step, index) => (
+          <li class="page-process__step">
+            <div class="page-process__marker" aria-hidden="true">
+              <span class="page-process__number">{index + 1}</span>
+            </div>
+            {index < steps.length - 1 && <span class="page-process__line" aria-hidden="true"></span>}
+            <div class="page-process__content">
+              <h3 class="page-process__step-title">{step.title}</h3>
+              <p class="page-process__step-text">{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .page-process {
+    padding-block: var(--space-3xl);
+    background-color: var(--color-white);
+  }
+
+  .page-process__header {
+    max-width: 640px;
+    margin-bottom: var(--space-2xl);
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .page-process__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-process__title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+  }
+
+  .page-process__intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+  }
+
+  .page-process__timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-process__step {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .page-process__marker {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 0 4px var(--color-white), 0 0 0 6px var(--color-gray-200);
+  }
+
+  .page-process__number {
+    font-size: 1.125rem;
+    font-weight: 800;
+  }
+
+  .page-process__line {
+    display: none;
+  }
+
+  .page-process__step-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-process__step-text {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+  }
+
+  @media (min-width: 768px) {
+    .page-process__timeline {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .page-process__step {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding-top: var(--space-md);
+    }
+
+    .page-process__marker {
+      margin-inline: auto;
+      margin-bottom: var(--space-lg);
+    }
+
+    .page-process__line {
+      display: block;
+      position: absolute;
+      top: 38px;
+      left: calc(50% + 26px);
+      width: calc(100% - 52px);
+      height: 3px;
+      background: linear-gradient(to right, var(--color-gold), var(--color-blue-light));
+      z-index: 1;
+    }
+
+    .page-process__step:last-child .page-process__line {
+      display: none;
+    }
+  }
+</style>
