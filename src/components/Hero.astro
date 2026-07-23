@@ -193,20 +193,45 @@ const features = [
   </div>
 </section>
 
-<style>
+<style define:vars={{ heroBg: `url(${heroImage.src})` }}>
   .hero {
     position: relative;
-    display: flex;
-    flex-direction: column;
+    display: block;
     background-color: var(--color-navy);
+    background-image: var(--heroBg);
+    background-size: cover;
+    background-position: 62% 42%;
+    background-repeat: no-repeat;
     overflow: hidden;
   }
 
-  /* ── Mobile: gestapelde hero (< 768px) ── */
+  /* ── Mobile: geïntegreerde hero met achtergrondafbeelding (< 768px) ── */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to right,
+        rgba(11, 29, 53, 0.96) 0%,
+        rgba(11, 29, 53, 0.9) 42%,
+        rgba(11, 29, 53, 0.55) 72%,
+        rgba(11, 29, 53, 0.15) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(11, 29, 53, 0.82) 0%,
+        rgba(11, 29, 53, 0.45) 55%,
+        rgba(11, 29, 53, 0.08) 100%
+      );
+  }
+
   .hero__content {
     position: relative;
     z-index: 2;
-    background-color: var(--color-navy);
+    background: transparent;
     padding: var(--space-2xl) var(--space-lg);
   }
 
@@ -215,11 +240,7 @@ const features = [
   }
 
   .hero__media {
-    position: relative;
-    width: 100%;
-    height: 260px;
-    flex-shrink: 0;
-    overflow: hidden;
+    display: none;
   }
 
   .hero__media :global(picture) {
@@ -353,28 +374,22 @@ const features = [
     transform: translateY(-2px);
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 640px) and (max-width: 767px) {
     .hero__features {
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-md) var(--space-lg);
-    }
-
-    .hero__actions {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-
-    .hero__btn {
-      flex: 1 1 auto;
-      min-width: 200px;
     }
   }
 
   /* ── Tablet & desktop: geïntegreerde twee-koloms hero (≥ 768px) ── */
   @media (min-width: 768px) {
     .hero {
-      display: block;
       height: 580px;
+      background-image: none;
+    }
+
+    .hero::before {
+      display: none;
     }
 
     .hero__content {
@@ -392,6 +407,7 @@ const features = [
     }
 
     .hero__media {
+      display: block;
       position: absolute;
       top: 0;
       right: 0;
@@ -400,6 +416,7 @@ const features = [
       width: auto;
       height: auto;
       z-index: 1;
+      overflow: hidden;
     }
 
     .hero__divider {
@@ -421,6 +438,21 @@ const features = [
       z-index: 2;
       max-width: 100%;
       padding-right: var(--space-lg);
+    }
+
+    .hero__features {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md) var(--space-lg);
+    }
+
+    .hero__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .hero__btn {
+      flex: 1 1 auto;
+      min-width: 200px;
     }
 
     .hero__image {
