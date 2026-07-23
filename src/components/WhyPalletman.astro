@@ -1,0 +1,134 @@
+---
+import ImagePlaceholder from "./ImagePlaceholder.astro";
+
+const usps = [
+  "Snelle service door heel Nederland",
+  "Eerlijke en transparante prijzen",
+  "Inkoop én verkoop onder één dak",
+  "Duurzaam hergebruik van pallets",
+  "Particulieren en bedrijven welkom",
+];
+---
+
+<section class="why" aria-labelledby="why-heading">
+  <div class="why__inner container">
+    <div class="why__content">
+      <p class="why__eyebrow">Waarom De Palletman</p>
+      <h2 id="why-heading" class="why__title">De specialist die u direct verder helpt</h2>
+      <p class="why__text">
+        De Palletman is dé partner voor bedrijven en particulieren die pallets willen kopen of
+        verkopen. Met jarenlange ervaring in de palletbranche regelen wij alles snel, eerlijk en
+        zonder gedoe — van kleine partijen tot grote volumes.
+      </p>
+      <p class="why__text">
+        Wij geloven in duurzaam hergebruik, duidelijke afspraken en persoonlijk contact. Zo weet u
+        altijd waar u aan toe bent en krijgt u een oplossing die past bij uw situatie.
+      </p>
+      <ul class="why__list" aria-label="Voordelen van De Palletman">
+        {
+          usps.map((usp) => (
+            <li class="why__item">
+              <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <circle cx="7" cy="7" r="7" fill="currentColor" />
+                <path
+                  d="M4 7L6 9L10 5"
+                  stroke="#0b1d35"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>{usp}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="why__media">
+      <ImagePlaceholder filename="over-ons-de-palletman.webp" aspectRatio="4 / 3" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .why {
+    padding-block: var(--space-3xl);
+    background-color: var(--color-gray-50);
+  }
+
+  .why__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .why__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .why__title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    line-height: 1.2;
+    margin-bottom: var(--space-lg);
+  }
+
+  .why__text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-md);
+  }
+
+  .why__text:last-of-type {
+    margin-bottom: var(--space-xl);
+  }
+
+  .why__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .why__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    line-height: 1.4;
+  }
+
+  .why__item svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-gold);
+  }
+
+  .why__media {
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .why__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+    }
+
+    .why__media {
+      max-width: none;
+      margin-inline: 0;
+    }
+  }
+</style>

@@ -1,0 +1,251 @@
+---
+const services = [
+  {
+    title: "Gebruikte pallets kopen",
+    description:
+      "Kwalitatieve gebruikte pallets voor bedrijven en particulieren. Snel geleverd of opgehaald tegen een eerlijke prijs.",
+    href: "/pallets-kopen",
+    icon: "buy",
+  },
+  {
+    title: "Gebruikte pallets verkopen",
+    description:
+      "Verkoop uw overtollige pallets direct aan De Palletman. Wij beoordelen partijen groot en klein en betalen snel.",
+    href: "/pallets-verkopen",
+    icon: "sell",
+  },
+  {
+    title: "Europallets",
+    description:
+      "EPAL- en EUR-pallets in diverse condities. Betrouwbaar, herbruikbaar en geschikt voor logistiek en export.",
+    href: "/europallets",
+    icon: "euro",
+  },
+  {
+    title: "Blokpallets",
+    description:
+      "Sterke blokpallets voor zware ladingen en industriële toepassingen. Vraag beschikbaarheid en prijs eenvoudig aan.",
+    href: "/blokpallets",
+    icon: "block",
+  },
+];
+---
+
+<section class="services" aria-labelledby="services-heading">
+  <div class="services__inner container">
+    <header class="services__header">
+      <p class="services__eyebrow">Onze diensten</p>
+      <h2 id="services-heading" class="services__title">Alles voor in- en verkoop van pallets</h2>
+      <p class="services__intro">
+        De Palletman helpt bedrijven en particulieren met het kopen, verkopen en hergebruiken van
+        gebruikte pallets — snel, transparant en door heel Nederland.
+      </p>
+    </header>
+
+    <ul class="services__grid">
+      {
+        services.map((service) => (
+          <li class="services__card">
+            <div class="services__icon" aria-hidden="true">
+              {service.icon === "buy" && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M3 6h18" stroke="currentColor" stroke-width="2" />
+                  <path
+                    d="M16 10a4 4 0 01-8 0"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              )}
+              {service.icon === "sell" && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              )}
+              {service.icon === "euro" && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="3"
+                    y="6"
+                    width="18"
+                    height="12"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M7 10h8M7 14h6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M16 8l2 2-2 2M8 8L6 10l2 2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              )}
+              {service.icon === "block" && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M4 8h16v10H4zM4 8l2-4h12l2 4M8 18v2M16 18v2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M4 12h16" stroke="currentColor" stroke-width="2" />
+                </svg>
+              )}
+            </div>
+            <h3 class="services__card-title">{service.title}</h3>
+            <p class="services__card-text">{service.description}</p>
+            <a href={service.href} class="services__link">
+              Meer informatie
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding-block: var(--space-3xl);
+    background-color: var(--color-white);
+  }
+
+  .services__header {
+    max-width: 720px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .services__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .services__title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+  }
+
+  .services__intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .services__card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+
+  .services__card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+
+  .services__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--space-lg);
+    background-color: var(--color-navy);
+    color: var(--color-gold);
+    border-radius: var(--radius-md);
+  }
+
+  .services__card-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: var(--space-sm);
+    line-height: 1.3;
+  }
+
+  .services__card-text {
+    flex: 1;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-lg);
+  }
+
+  .services__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    transition: color var(--transition-fast), gap var(--transition-fast);
+  }
+
+  .services__link:hover {
+    color: var(--color-blue);
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 640px) {
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+    }
+  }
+</style>
