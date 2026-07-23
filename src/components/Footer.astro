@@ -1,5 +1,5 @@
 ---
-import logo from "../assets/images/palletman-logo.png";
+import footerLogo from "../assets/images/palletman-logo-transparent.png";
 
 const year = new Date().getFullYear();
 
@@ -38,9 +38,9 @@ const email = "info@depalletman.nl";
         <div class="footer__col footer__col--brand">
           <a href="/" class="footer__logo" aria-label="De Palletman – naar homepage">
             <img
-              src={logo.src}
-              width={logo.width}
-              height={logo.height}
+              src={footerLogo.src}
+              width={footerLogo.width}
+              height={footerLogo.height}
               alt="De Palletman – De man achter elke pallet"
               class="footer__logo-img"
               loading="lazy"
@@ -196,6 +196,8 @@ const email = "info@depalletman.nl";
     width: auto;
     height: 72px;
     object-fit: contain;
+    display: block;
+    background: transparent;
   }
 
   .footer__tagline {
