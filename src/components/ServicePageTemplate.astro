@@ -1,0 +1,89 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "./PageHero.astro";
+import PageIntro from "./PageIntro.astro";
+import PageContent from "./PageContent.astro";
+import PageFaq from "./PageFaq.astro";
+import PageCta from "./PageCta.astro";
+import type { ServicePageContent } from "../types/servicePage";
+import { buildServicePageSchema, getServicePageUrl } from "../lib/servicePageSchema";
+
+interface Props {
+  content: ServicePageContent;
+}
+
+const { content } = Astro.props;
+
+const pageUrl = getServicePageUrl(content.path);
+const schema = buildServicePageSchema(content);
+---
+
+<PageLayout
+  title={content.seo.title}
+  description={content.seo.description}
+  canonical={pageUrl}
+  ogTitle={content.seo.title}
+  ogDescription={content.seo.description}
+  ogImage={`https://de-palletman.pages.dev/favicon.svg`}
+  schema={schema}
+  currentPath={content.path}
+>
+  <PageHero
+    eyebrow={content.hero.eyebrow}
+    title={content.hero.title}
+    subtitle={content.hero.subtitle}
+    imageFilename={content.hero.imageFilename}
+  />
+
+  <PageIntro
+    eyebrow={content.intro.eyebrow}
+    title={content.intro.title}
+    text={content.intro.text}
+  />
+
+  <PageContent
+    id={content.sectionTypes.id}
+    eyebrow={content.sectionTypes.eyebrow}
+    title={content.sectionTypes.title}
+    intro={content.sectionTypes.intro}
+    columns={content.sectionTypes.columns ?? 3}
+    items={content.sectionTypes.items}
+  />
+
+  <PageContent
+    id={content.sectionQualities.id}
+    eyebrow={content.sectionQualities.eyebrow}
+    title={content.sectionQualities.title}
+    intro={content.sectionQualities.intro}
+    variant={content.sectionQualities.variant ?? "white"}
+    columns={content.sectionQualities.columns ?? 3}
+    items={content.sectionQualities.items}
+  />
+
+  <PageContent
+    id={content.sectionBenefits.id}
+    eyebrow={content.sectionBenefits.eyebrow}
+    title={content.sectionBenefits.title}
+    intro={content.sectionBenefits.intro}
+    columns={content.sectionBenefits.columns ?? 2}
+    items={content.sectionBenefits.items}
+  />
+
+  <PageFaq
+    id={content.faq.id}
+    eyebrow={content.faq.eyebrow}
+    title={content.faq.title}
+    intro={content.faq.intro}
+    variant={content.faq.variant ?? "white"}
+    items={content.faq.items}
+  />
+
+  <PageCta
+    title={content.cta.title}
+    text={content.cta.text}
+    primaryLabel={content.cta.primaryLabel}
+    primaryHref={content.cta.primaryHref}
+    secondaryLabel={content.cta.secondaryLabel}
+    secondaryHref={content.cta.secondaryHref}
+  />
+</PageLayout>
