@@ -1,0 +1,82 @@
+---
+import ImagePlaceholder from "./ImagePlaceholder.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  imageFilename: string;
+}
+
+const { eyebrow, title, subtitle, imageFilename } = Astro.props;
+---
+
+<section class="page-hero" aria-labelledby="page-hero-heading">
+  <div class="page-hero__inner container">
+    <div class="page-hero__content">
+      <p class="page-hero__eyebrow">{eyebrow}</p>
+      <h1 id="page-hero-heading" class="page-hero__title">{title}</h1>
+      <p class="page-hero__subtitle">{subtitle}</p>
+    </div>
+    <div class="page-hero__media">
+      <ImagePlaceholder filename={imageFilename} aspectRatio="16 / 9" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-2xl) var(--space-xl);
+    background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+    border-bottom: 3px solid var(--color-gold);
+  }
+
+  .page-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .page-hero__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-hero__title {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    line-height: 1.15;
+    margin-bottom: var(--space-md);
+  }
+
+  .page-hero__subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    line-height: 1.65;
+    color: var(--color-gray-600);
+    max-width: 540px;
+  }
+
+  .page-hero__media {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 768px) {
+    .page-hero {
+      padding-block: var(--space-3xl) var(--space-2xl);
+    }
+
+    .page-hero__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+  }
+</style>

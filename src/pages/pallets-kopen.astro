@@ -1,0 +1,53 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import PageIntro from "../components/PageIntro.astro";
+import PageContent from "../components/PageContent.astro";
+import PageCta from "../components/PageCta.astro";
+---
+
+<PageLayout
+  title="Pallets kopen | De Palletman"
+  description="Koop kwalitatieve gebruikte pallets bij De Palletman. Snel geleverd of opgehaald tegen een eerlijke prijs voor bedrijven en particulieren."
+  currentPath="/pallets-kopen"
+>
+  <PageHero
+    eyebrow="Pallets kopen"
+    title="Gebruikte pallets kopen"
+    subtitle="Kwalitatieve pallets voor bedrijven en particulieren — snel beschikbaar en eerlijk geprijsd."
+    imageFilename="pallets-kopen-hero.webp"
+  />
+  <PageIntro
+    eyebrow="Betrouwbare leverancier"
+    title="Pallets die passen bij uw situatie"
+    text="Bij De Palletman koopt u gebruikte pallets in diverse maten en condities. Of u nu een kleine partij nodig heeft of regelmatig grotere volumes afneemt: wij denken met u mee en zorgen voor een snelle, transparante afhandeling."
+  />
+  <PageContent
+    items={[
+      {
+        title: "Diverse pallettypes",
+        text: "Europallets, blokpallets en wegwerppallets — wij hebben een breed assortiment beschikbaar voor logistiek, opslag en transport.",
+      },
+      {
+        title: "Snelle levering",
+        text: "Wij bezorgen pallets in ons werkgebied of regelen ophalen op locatie. Flexibel en zonder gedoe.",
+      },
+      {
+        title: "Eerlijke prijzen",
+        text: "Transparante prijsopgave op basis van type, conditie en aantal. Geen verrassingen achteraf.",
+      },
+      {
+        title: "Duurzaam hergebruik",
+        text: "Door gebruikte pallets te kopen draagt u bij aan circulair gebruik van hout en vermindert u afval.",
+      },
+    ]}
+  />
+  <PageCta
+    title="Pallets nodig?"
+    text="Vraag vandaag nog een prijsopgave aan. Wij reageren snel en denken graag met u mee over de beste oplossing."
+    primaryLabel="Vraag een prijs aan"
+    primaryHref="/contact"
+    secondaryLabel="Bekijk Europallets"
+    secondaryHref="/europallets"
+  />
+</PageLayout>

@@ -1,0 +1,53 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import PageIntro from "../components/PageIntro.astro";
+import PageContent from "../components/PageContent.astro";
+import PageCta from "../components/PageCta.astro";
+---
+
+<PageLayout
+  title="Wegwerppallets | De Palletman"
+  description="Wegwerppallets kopen en verkopen bij De Palletman. Eenvoudig, betaalbaar en geschikt voor eenmalig gebruik."
+  currentPath="/wegwerppallets"
+>
+  <PageHero
+    eyebrow="Wegwerppallets"
+    title="Wegwerppallets"
+    subtitle="Eenvoudig, betaalbaar en geschikt voor eenmalig transport of export."
+    imageFilename="wegwerppallets-hero.webp"
+  />
+  <PageIntro
+    eyebrow="Praktische oplossing"
+    title="Wegwerppallets voor eenmalig gebruik"
+    text="Wegwerppallets zijn een praktische keuze wanneer u pallets nodig heeft voor eenmalig transport of export. De Palletman levert en koopt gebruikte wegwerppallets tegen eerlijke prijzen."
+  />
+  <PageContent
+    items={[
+      {
+        title: "Betaalbaar",
+        text: "Wegwerppallets zijn een kostenefficiënte optie voor situaties waarin hergebruik geen prioriteit is.",
+      },
+      {
+        title: "Export en eenmalig gebruik",
+        text: "Ideaal voor exportzendingen of situaties waarin pallets niet retour komen.",
+      },
+      {
+        title: "Snelle levering",
+        text: "Wij zorgen voor snelle beschikbaarheid en levering in ons werkgebied.",
+      },
+      {
+        title: "In- en verkoop",
+        text: "Heeft u overtollige wegwerppallets? Wij kopen ze in. Heeft u pallets nodig? Wij leveren.",
+      },
+    ]}
+  />
+  <PageCta
+    title="Wegwerppallets nodig?"
+    text="Vraag vandaag nog een prijsopgave aan voor uw partij wegwerppallets."
+    primaryLabel="Neem contact op"
+    primaryHref="/contact"
+    secondaryLabel="Pallets kopen"
+    secondaryHref="/pallets-kopen"
+  />
+</PageLayout>

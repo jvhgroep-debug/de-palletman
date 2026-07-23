@@ -1,0 +1,61 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import PageIntro from "../components/PageIntro.astro";
+import PageRegions from "../components/PageRegions.astro";
+import PageCta from "../components/PageCta.astro";
+
+const regions = [
+  {
+    name: "Noord-Brabant",
+    text: "Wij zijn actief in heel Noord-Brabant. Ophalen en bezorgen van pallets op locatie.",
+  },
+  {
+    name: "Zuid-Holland",
+    text: "Van Rotterdam tot Den Haag — wij bedienen bedrijven en particulieren in Zuid-Holland.",
+  },
+  {
+    name: "Zeeland",
+    text: "Ook in Zeeland halen wij pallets op en bezorgen wij op aanvraag.",
+  },
+  {
+    name: "Limburg",
+    text: "In Limburg helpen wij met in- en verkoop van gebruikte pallets.",
+  },
+  {
+    name: "Utrecht",
+    text: "Wij bedienen Utrecht en omgeving met snelle service en eerlijke prijzen.",
+  },
+  {
+    name: "Gelderland",
+    text: "In Gelderland regelen wij ophalen, bezorgen en palletbeheer.",
+  },
+];
+---
+
+<PageLayout
+  title="Werkgebied | De Palletman"
+  description="De Palletman is actief in Noord-Brabant, Zuid-Holland, Zeeland, Limburg, Utrecht en Gelderland. Ophalen en bezorgen op locatie."
+  currentPath="/werkgebied"
+>
+  <PageHero
+    eyebrow="Werkgebied"
+    title="Actief in heel Zuid- en Midden-Nederland"
+    subtitle="Ophalen en bezorgen van pallets in zes provincies — snel en betrouwbaar."
+    imageFilename="werkgebied-hero.webp"
+  />
+  <PageIntro
+    eyebrow="Onze regio"
+    title="Waar wij actief zijn"
+    text="De Palletman bedient bedrijven en particulieren in Noord-Brabant, Zuid-Holland, Zeeland, Limburg, Utrecht en Gelderland. Wij halen pallets op bij u op of bezorgen op locatie — flexibel en zonder gedoe."
+  />
+  <PageRegions regions={regions} />
+  <PageCta
+    title="Actief in uw regio?"
+    text="Neem contact op en vraag naar ophalen, bezorgen of een prijsopgave voor uw regio."
+    primaryLabel="Neem contact op"
+    primaryHref="/contact"
+    secondaryLabel="Pallets verkopen"
+    secondaryHref="/pallets-verkopen"
+  />
+</PageLayout>

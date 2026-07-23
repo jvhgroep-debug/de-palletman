@@ -1,0 +1,53 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import PageIntro from "../components/PageIntro.astro";
+import PageContent from "../components/PageContent.astro";
+import PageCta from "../components/PageCta.astro";
+---
+
+<PageLayout
+  title="Pallets verkopen | De Palletman"
+  description="Verkoop uw overtollige pallets aan De Palletman. Wij beoordelen partijen groot en klein en betalen snel en eerlijk."
+  currentPath="/pallets-verkopen"
+>
+  <PageHero
+    eyebrow="Pallets verkopen"
+    title="Verkoop uw gebruikte pallets"
+    subtitle="Overtollige pallets? Wij kopen partijen groot en klein en betalen snel."
+    imageFilename="pallets-verkopen-hero.webp"
+  />
+  <PageIntro
+    eyebrow="Snelle afhandeling"
+    title="Eenvoudig pallets verkopen"
+    text="Heeft u pallets over die u niet meer nodig heeft? De Palletman koopt gebruikte pallets van bedrijven en particulieren. Stuur ons een bericht met type, aantal en conditie — wij geven u snel een eerlijke prijsopgave."
+  />
+  <PageContent
+    items={[
+      {
+        title: "Directe betaling",
+        text: "Bij inkoop betalen wij snel en betrouwbaar. Geen lange wachttijden of ingewikkelde procedures.",
+      },
+      {
+        title: "Grote en kleine partijen",
+        text: "Of u nu enkele pallets heeft of een volle vrachtwagen: wij beoordelen elke aanvraag en komen met een passend aanbod.",
+      },
+      {
+        title: "Ophalen op locatie",
+        text: "Wij halen pallets op bij u op in ons werkgebied. Efficiënt en zonder extra moeite voor u.",
+      },
+      {
+        title: "Eerlijke beoordeling",
+        text: "Wij kijken naar type, conditie en hoeveelheid en geven een transparante prijsopgave.",
+      },
+    ]}
+  />
+  <PageCta
+    title="Pallets verkopen?"
+    text="Neem contact op en ontvang snel een prijsopgave voor uw partij pallets."
+    primaryLabel="Vraag een prijs aan"
+    primaryHref="/contact"
+    secondaryLabel="WhatsApp ons"
+    secondaryHref="https://wa.me/31612345678"
+  />
+</PageLayout>

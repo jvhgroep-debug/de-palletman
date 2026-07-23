@@ -1,0 +1,90 @@
+---
+interface ContentItem {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  items: ContentItem[];
+  columns?: 2 | 3;
+}
+
+const { items, columns = 2 } = Astro.props;
+---
+
+<section class="page-content" aria-label="Pagina-inhoud">
+  <div class="page-content__inner container">
+    <ul class="page-content__grid" data-columns={columns}>
+      {
+        items.map((item) => (
+          <li class="page-content__item">
+            <h3 class="page-content__item-title">{item.title}</h3>
+            <p class="page-content__item-text">{item.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .page-content {
+    padding-block: var(--space-2xl) var(--space-3xl);
+    background-color: var(--color-gray-50);
+  }
+
+  .page-content__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .page-content__item {
+    padding: var(--space-xl);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .page-content__item-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: var(--space-sm);
+    line-height: 1.35;
+  }
+
+  .page-content__item-title::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 1em;
+    margin-right: var(--space-sm);
+    background-color: var(--color-gold);
+    vertical-align: -0.1em;
+    border-radius: 2px;
+  }
+
+  .page-content__item-text {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+  }
+
+  @media (min-width: 640px) {
+    .page-content__grid[data-columns="2"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-content__grid[data-columns="3"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .page-content__grid[data-columns="3"] {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

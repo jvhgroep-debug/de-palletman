@@ -1,0 +1,53 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import PageIntro from "../components/PageIntro.astro";
+import PageContent from "../components/PageContent.astro";
+import PageCta from "../components/PageCta.astro";
+---
+
+<PageLayout
+  title="Europallets | De Palletman"
+  description="EPAL- en EUR-pallets kopen en verkopen bij De Palletman. Betrouwbaar, herbruikbaar en geschikt voor logistiek en export."
+  currentPath="/europallets"
+>
+  <PageHero
+    eyebrow="Europallets"
+    title="EPAL- en EUR-pallets"
+    subtitle="De standaard voor logistiek en export — betrouwbaar, herbruikbaar en breed inzetbaar."
+    imageFilename="europallets-hero.webp"
+  />
+  <PageIntro
+    eyebrow="Logistieke standaard"
+    title="Europallets voor elke toepassing"
+    text="Europallets zijn de meest gebruikte pallets in Europa. Bij De Palletman koopt en verkoopt u EPAL- en EUR-pallets in diverse condities. Ideaal voor transport, opslag en export."
+  />
+  <PageContent
+    items={[
+      {
+        title: "EPAL-gecertificeerd",
+        text: "Wij werken met erkende Europallets die voldoen aan de gangbare normen voor logistiek en export.",
+      },
+      {
+        title: "Diverse condities",
+        text: "Van licht gebruikt tot gerepareerd — wij hebben Europallets beschikbaar die passen bij uw budget en toepassing.",
+      },
+      {
+        title: "In- en verkoop",
+        text: "Heeft u overtollige Europallets? Wij kopen ze in. Heeft u pallets nodig? Wij leveren snel.",
+      },
+      {
+        title: "Exportgeschikt",
+        text: "Europallets zijn wereldwijd herkenbaar en geschikt voor internationaal transport en handel.",
+      },
+    ]}
+  />
+  <PageCta
+    title="Europallets nodig?"
+    text="Vraag beschikbaarheid en prijs eenvoudig aan via contact of WhatsApp."
+    primaryLabel="Neem contact op"
+    primaryHref="/contact"
+    secondaryLabel="Pallets kopen"
+    secondaryHref="/pallets-kopen"
+  />
+</PageLayout>

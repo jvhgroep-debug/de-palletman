@@ -1,0 +1,74 @@
+---
+interface Region {
+  name: string;
+  text: string;
+}
+
+interface Props {
+  regions: Region[];
+}
+
+const { regions } = Astro.props;
+---
+
+<section class="page-regions" aria-label="Werkgebied per provincie">
+  <div class="page-regions__inner container">
+    <ul class="page-regions__grid">
+      {
+        regions.map((region) => (
+          <li class="page-regions__item">
+            <h3 class="page-regions__name">{region.name}</h3>
+            <p class="page-regions__text">{region.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .page-regions {
+    padding-block: var(--space-2xl) var(--space-3xl);
+    background-color: var(--color-gray-50);
+  }
+
+  .page-regions__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .page-regions__item {
+    padding: var(--space-xl);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    border-top: 4px solid var(--color-gold);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .page-regions__name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-regions__text {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+  }
+
+  @media (min-width: 640px) {
+    .page-regions__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .page-regions__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

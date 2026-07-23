@@ -1,0 +1,67 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import PageIntro from "../components/PageIntro.astro";
+import PageFaq from "../components/PageFaq.astro";
+import PageCta from "../components/PageCta.astro";
+
+const faqItems = [
+  {
+    question: "Welke soorten pallets koopt en verkoopt De Palletman?",
+    answer:
+      "Wij handelen in Europallets (EPAL/EUR), blokpallets en wegwerppallets. Informeer naar de actuele beschikbaarheid en condities.",
+  },
+  {
+    question: "Hoe snel krijg ik een prijsopgave?",
+    answer:
+      "Wij streven ernaar om binnen korte tijd te reageren op uw aanvraag. Stuur type, aantal en conditie mee voor een snellere offerte.",
+  },
+  {
+    question: "Halen jullie pallets op?",
+    answer:
+      "Ja, wij halen pallets op in ons werkgebied: Noord-Brabant, Zuid-Holland, Zeeland, Limburg, Utrecht en Gelderland.",
+  },
+  {
+    question: "Bezorgen jullie ook pallets?",
+    answer:
+      "Ja, wij bezorgen pallets op locatie in ons werkgebied. Neem contact op voor beschikbaarheid en levering.",
+  },
+  {
+    question: "Kopen jullie ook kleine partijen?",
+    answer:
+      "Ja, wij beoordelen zowel grote als kleine partijen. Of u nu enkele pallets heeft of een volle lading — neem contact op.",
+  },
+  {
+    question: "Hoe werkt betaling bij verkoop?",
+    answer:
+      "Bij inkoop betalen wij snel en betrouwbaar. De exacte procedure bespreken wij met u bij de prijsopgave.",
+  },
+];
+---
+
+<PageLayout
+  title="FAQ | De Palletman"
+  description="Veelgestelde vragen over het kopen en verkopen van gebruikte pallets bij De Palletman. Ophalen, bezorgen, prijzen en meer."
+  currentPath="/faq"
+>
+  <PageHero
+    eyebrow="FAQ"
+    title="Veelgestelde vragen"
+    subtitle="Antwoorden op de meest gestelde vragen over pallets kopen, verkopen en onze service."
+    imageFilename="faq-hero.webp"
+  />
+  <PageIntro
+    eyebrow="Hulp nodig?"
+    title="Alles wat u wilt weten"
+    text="Hier vindt u antwoorden op veelgestelde vragen. Staat uw vraag er niet bij? Neem gerust contact op — wij helpen u graag verder."
+  />
+  <PageFaq items={faqItems} />
+  <PageCta
+    title="Nog een vraag?"
+    text="Neem contact op via telefoon, WhatsApp of e-mail. Wij denken graag met u mee."
+    primaryLabel="Neem contact op"
+    primaryHref="/contact"
+    secondaryLabel="Pallets verkopen"
+    secondaryHref="/pallets-verkopen"
+  />
+</PageLayout>

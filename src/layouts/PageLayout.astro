@@ -1,0 +1,25 @@
+---
+import Layout from "./Layout.astro";
+import Topbar from "../components/Topbar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  currentPath: string;
+}
+
+const { title, description, currentPath } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <Topbar />
+  <Header currentPath={currentPath} />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</Layout>
