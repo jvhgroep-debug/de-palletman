@@ -139,14 +139,20 @@ export const noordBrabant: ProvinceTemplatePage = {
       {
         title: "Eindhoven",
         text: "Brainport en omgeving — ophalen en bezorgen voor bedrijven in en rond Eindhoven.",
+        href: "/noord-brabant/pallets-eindhoven",
+        linkLabel: "Pallets in Eindhoven",
       },
       {
         title: "Tilburg",
-        text: "Logistiek en industrie in Tilburg en de wider regio.",
+        text: "Logistiek, productie en distributie in Tilburg en Midden-Brabant.",
+        href: "/noord-brabant/pallets-tilburg",
+        linkLabel: "Pallets in Tilburg",
       },
       {
         title: "Breda",
-        text: "Van Breda tot de westelijke grens — snelle service in West-Brabant.",
+        text: "Logistiek en bedrijvigheid in West-Brabant — snelle service in en rond Breda.",
+        href: "/noord-brabant/pallets-breda",
+        linkLabel: "Pallets in Breda",
       },
       {
         title: "'s-Hertogenbosch",
