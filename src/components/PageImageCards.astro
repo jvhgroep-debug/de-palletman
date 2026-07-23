@@ -1,0 +1,135 @@
+---
+import HeroImage from "./HeroImage.astro";
+
+interface ImageCard {
+  filename: string;
+  alt: string;
+  title: string;
+  text: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  items: ImageCard[];
+  id?: string;
+  variant?: "gray" | "white";
+}
+
+const { eyebrow, title, intro, items, id = "image-cards-heading", variant = "gray" } = Astro.props;
+---
+
+<section
+  class:list={["page-image-cards", variant === "white" && "page-image-cards--white"]}
+  aria-labelledby={id}
+>
+  <div class="page-image-cards__inner container">
+    <header class="page-image-cards__header">
+      <p class="page-image-cards__eyebrow">{eyebrow}</p>
+      <h2 id={id} class="page-image-cards__title">{title}</h2>
+      <p class="page-image-cards__intro">{intro}</p>
+    </header>
+    <ul class="page-image-cards__grid">
+      {
+        items.map((item) => (
+          <li class="page-image-cards__card">
+            <HeroImage filename={item.filename} alt={item.alt} aspectRatio="4 / 3" />
+            <div class="page-image-cards__body">
+              <h3 class="page-image-cards__card-title">{item.title}</h3>
+              <p class="page-image-cards__card-text">{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .page-image-cards {
+    padding-block: var(--space-2xl) var(--space-3xl);
+    background-color: var(--color-gray-50);
+  }
+
+  .page-image-cards--white {
+    background-color: var(--color-white);
+  }
+
+  .page-image-cards__header {
+    max-width: 720px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .page-image-cards__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-image-cards__title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-image-cards__intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+  }
+
+  .page-image-cards__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-image-cards__card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .page-image-cards--white .page-image-cards__card {
+    background-color: var(--color-gray-50);
+  }
+
+  .page-image-cards__body {
+    padding: var(--space-lg);
+  }
+
+  .page-image-cards__card-title {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: var(--color-navy);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-image-cards__card-text {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+  }
+
+  @media (min-width: 640px) {
+    .page-image-cards__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .page-image-cards__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

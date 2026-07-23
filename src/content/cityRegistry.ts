@@ -1,15 +1,25 @@
 import type { CityContentMaster } from "./cityTypes";
 import { validateCityContentMaster } from "./cityTypes";
-import {
-  ACTIVE_CITY_SLUGS,
-  loadMasterCityPages,
-} from "./masterCsv/loadMasterCityPages";
+import { PREMIUM_CITY_PAGES } from "./cities";
+import { ACTIVE_CITY_SLUGS } from "./masterCsv/activeCitySlugs";
 
-/** Stadspagina's gegenereerd uit src/data/master-cities.csv */
-const masterCityPages = loadMasterCityPages();
+/** Stadspagina's — premium pSEO-content (Opdracht 24). */
+const premiumCityPages = PREMIUM_CITY_PAGES;
+
+if (premiumCityPages.length !== ACTIVE_CITY_SLUGS.length) {
+  throw new Error(
+    `Premium city pages (${premiumCityPages.length}) komen niet overeen met ACTIVE_CITY_SLUGS (${ACTIVE_CITY_SLUGS.length}).`,
+  );
+}
+
+for (const slug of ACTIVE_CITY_SLUGS) {
+  if (!premiumCityPages.some((p) => p.slug === slug)) {
+    throw new Error(`Premium city page ontbreekt voor slug "${slug}".`);
+  }
+}
 
 export const cityPages = Object.fromEntries(
-  masterCityPages.map((page) => [page.slug, page]),
+  premiumCityPages.map((page) => [page.slug, page]),
 ) satisfies Record<string, CityContentMaster>;
 
 export type CityPageSlug = keyof typeof cityPages;
@@ -35,7 +45,7 @@ export const cityStaticPaths = Object.values(cityPages).map((page) => ({
 }));
 
 export const cityRegistryStats = {
-  source: "master-cities.csv" as const,
+  source: "premium-cities" as const,
   activeSlugs: ACTIVE_CITY_SLUGS,
   totalCount: Object.keys(cityPages).length,
 } as const;

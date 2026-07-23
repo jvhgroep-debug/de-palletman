@@ -1,0 +1,84 @@
+---
+interface Props {
+  filename: string;
+  alt: string;
+  aspectRatio?: string;
+  class?: string;
+  loading?: "lazy" | "eager";
+  fetchpriority?: "high" | "low" | "auto";
+}
+
+const {
+  filename,
+  alt,
+  aspectRatio = "16 / 9",
+  class: className,
+  loading = "lazy",
+  fetchpriority,
+} = Astro.props;
+
+const src = `/images/${filename}`;
+---
+
+<div class:list={["hero-image", className]} style={`--hero-image-ratio: ${aspectRatio}`}>
+  <img
+    class="hero-image__img"
+    src={src}
+    alt={alt}
+    width="1280"
+    height="720"
+    loading={loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+    onerror="this.classList.add('hero-image__img--missing');this.nextElementSibling?.classList.add('hero-image__fallback--visible')"
+  />
+  <p class="hero-image__fallback" aria-hidden="true">{filename}</p>
+</div>
+
+<style>
+  .hero-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--hero-image-ratio);
+    min-height: 200px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: linear-gradient(
+      145deg,
+      var(--color-gray-100) 0%,
+      var(--color-gray-50) 50%,
+      var(--color-gray-100) 100%
+    );
+  }
+
+  .hero-image__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-image__img--missing {
+    display: none;
+  }
+
+  .hero-image__fallback {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: var(--space-lg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    text-align: center;
+    word-break: break-all;
+    line-height: 1.4;
+  }
+
+  .hero-image__fallback--visible {
+    display: flex;
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+---
+
+<PageLayout
+  title="Pagina niet gevonden | De Palletman"
+  description="De pagina die u zoekt bestaat niet of is verplaatst. Ga terug naar de homepage of neem contact op."
+  currentPath="/404"
+>
+  <section class="not-found" aria-labelledby="not-found-heading">
+    <div class="not-found__inner container">
+      <p class="not-found__code" aria-hidden="true">404</p>
+      <h1 id="not-found-heading" class="not-found__title">Pagina niet gevonden</h1>
+      <p class="not-found__text">
+        De pagina die u zoekt bestaat niet, is verplaatst of tijdelijk niet beschikbaar. Geen zorgen —
+        wij helpen u graag verder met pallets kopen of verkopen.
+      </p>
+      <div class="not-found__actions">
+        <a href="/" class="not-found__btn not-found__btn--primary">Naar homepage</a>
+        <a href="/contact" class="not-found__btn not-found__btn--secondary">Contact opnemen</a>
+      </div>
+      <nav class="not-found__links" aria-label="Populaire pagina's">
+        <p class="not-found__links-label">Of bekijk:</p>
+        <ul class="not-found__list">
+          <li><a href="/pallets-kopen">Pallets kopen</a></li>
+          <li><a href="/pallets-verkopen">Pallets verkopen</a></li>
+          <li><a href="/werkgebied">Werkgebied</a></li>
+          <li><a href="/faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .not-found {
+    padding-block: var(--space-3xl);
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  }
+
+  .not-found__inner {
+    max-width: 640px;
+    text-align: center;
+  }
+
+  .not-found__code {
+    font-size: clamp(4rem, 12vw, 6rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-md);
+  }
+
+  .not-found__title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    margin-bottom: var(--space-md);
+  }
+
+  .not-found__text {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-xl);
+  }
+
+  .not-found__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .not-found__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .not-found__btn--primary {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  .not-found__btn--primary:hover {
+    background-color: var(--color-gold-hover);
+    transform: translateY(-2px);
+  }
+
+  .not-found__btn--secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+  }
+
+  .not-found__btn--secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+  }
+
+  .not-found__links-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-sm);
+  }
+
+  .not-found__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm) var(--space-lg);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .not-found__list a {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-blue);
+    transition: color var(--transition-fast);
+  }
+
+  .not-found__list a:hover {
+    color: var(--color-navy);
+  }
+
+  @media (min-width: 640px) {
+    .not-found__actions {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+</style>

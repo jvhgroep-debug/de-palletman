@@ -1,0 +1,82 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+---
+
+<PageLayout
+  title="Algemene voorwaarden | De Palletman"
+  description="Algemene voorwaarden van De Palletman voor de in- en verkoop van gebruikte pallets."
+  currentPath="/algemene-voorwaarden"
+>
+  <PageIntro
+    eyebrow="Voorwaarden"
+    title="Algemene voorwaarden"
+    text="Onderstaande voorwaarden zijn van toepassing op alle overeenkomsten tussen De Palletman en haar klanten."
+  />
+  <section class="legal container">
+    <h2>Toepassingsgebied</h2>
+    <p>
+      Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes en overeenkomsten
+      tussen De Palletman en de klant met betrekking tot de in- en verkoop van gebruikte pallets en
+      gerelateerde diensten.
+    </p>
+    <h2>Verkoop (B2B)</h2>
+    <p>
+      De Palletman verkoopt gebruikte pallets uitsluitend aan bedrijven. Levering geschiedt op
+      afspraak binnen ons werkgebied, tenzij schriftelijk anders overeengekomen.
+    </p>
+    <h2>Inkoop</h2>
+    <p>
+      De Palletman koopt pallets in van bedrijven en particulieren. Prijsopgaven zijn indicatief en
+      gebaseerd op de door de klant verstrekte informatie over type, aantal en conditie.
+    </p>
+    <h2>Prijzen en betaling</h2>
+    <p>
+      Alle prijzen zijn exclusief btw, tenzij anders vermeld. Betalingsvoorwaarden worden per
+      overeenkomst vastgelegd.
+    </p>
+    <h2>Aansprakelijkheid</h2>
+    <p>
+      De Palletman is niet aansprakelijk voor indirecte schade. Onze aansprakelijkheid is beperkt tot
+      het bedrag van de betreffende transactie.
+    </p>
+    <h2>Contact</h2>
+    <p>
+      Vragen over deze voorwaarden? Neem contact op via onze <a href="/contact">contactpagina</a>.
+    </p>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    padding-block: 0 var(--space-3xl);
+    max-width: 720px;
+  }
+
+  .legal h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin: var(--space-xl) 0 var(--space-sm);
+  }
+
+  .legal h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-md);
+  }
+
+  .legal a {
+    color: var(--color-blue);
+    font-weight: 600;
+  }
+
+  .legal a:hover {
+    color: var(--color-navy);
+  }
+</style>

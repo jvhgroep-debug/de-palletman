@@ -28,6 +28,46 @@ export interface CityPalletServices {
   sell: CityTextBlock;
 }
 
+/** Uitgebreide premium-secties voor pSEO-stadspagina's (Opdracht 24). */
+export interface CityPageExtended {
+  trust: ContentSection;
+  europallets: ContentSection;
+  blokpallets: ContentSection;
+  wegwerppallets: ContentSection;
+  htExport: CityTextBlock;
+  largeBatches: CityTextBlock;
+  smallBatches: CityTextBlock;
+  pickup: CityTextBlock;
+  delivery: CityTextBlock;
+  werkgebied: ContentSection;
+  localAdvantages: ContentSection;
+  accessibility: ContentSection;
+  quoteForm: { title: string; intro: string };
+  /** Master City — Waarom bedrijven voor De Palletman kiezen. */
+  whyChooseUs?: ContentSection;
+  /** Master City — Doelgroepen / sectoren. */
+  targetIndustries?: ContentSection;
+  /** Master City — Palletformaten en afmetingen. */
+  palletFormats?: ContentSection;
+  /** Master City — Kwaliteitsuitleg A/B of 1e/2e keus. */
+  qualities?: ContentSection;
+  /** Master City — HT-export uitgebreid. */
+  exportDetail?: ContentSection;
+  /** Master City — Review-placeholders. */
+  reviews?: ContentSection;
+  /** Master City — Proces-sectie metadata. */
+  processMeta?: { eyebrow: string; title: string; intro: string };
+  /** Master City — Extra CTA onderaan. */
+  secondaryCta?: {
+    title: string;
+    text: string;
+    primaryLabel: string;
+    primaryHref: string;
+    secondaryLabel?: string;
+    secondaryHref?: string;
+  };
+}
+
 /**
  * City Content Master — centrale datastructuur per stadspagina.
  * Alle verplichte velden worden bij build gevalideerd via validateCityContentMaster().
@@ -73,6 +113,9 @@ export interface CityContentMaster {
 
   imageFilename: string;
   internalLinks: CityInternalLink[];
+
+  /** Premium pSEO-secties — volledig unieke content per stad. */
+  extended?: CityPageExtended;
 
   openGraph?: {
     title?: string;

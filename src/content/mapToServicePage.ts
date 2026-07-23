@@ -1,4 +1,4 @@
-import type { ContentMasterPage } from "./types";
+import type { BreadcrumbItem, ContentMasterPage, InternalLinkItem, ServiceExtendedSections } from "./types";
 
 /** Intern view-model voor ServicePageTemplate — afgeleid van Content Master. */
 export interface ServicePageViewModel {
@@ -8,6 +8,7 @@ export interface ServicePageViewModel {
     title: string;
     subtitle: string;
     imageFilename: string;
+    imageAlt: string;
   };
   intro: ContentMasterPage["intro"];
   sectionTypes: ContentMasterPage["seoText"]["types"] & { id: string };
@@ -15,6 +16,9 @@ export interface ServicePageViewModel {
   sectionBenefits: ContentMasterPage["usps"] & { id: string };
   faq: ContentMasterPage["faq"] & { id: string };
   cta: ContentMasterPage["cta"];
+  extended?: ServiceExtendedSections;
+  breadcrumbs?: BreadcrumbItem[];
+  internalLinks?: InternalLinkItem[];
 }
 
 const SECTION_IDS = {
@@ -32,6 +36,7 @@ export function mapContentMasterToServicePage(page: ContentMasterPage): ServiceP
       title: page.h1,
       subtitle: page.heroSubtitle,
       imageFilename: page.imageFilename,
+      imageAlt: page.imageAlt,
     },
     intro: page.intro,
     sectionTypes: {
@@ -56,5 +61,8 @@ export function mapContentMasterToServicePage(page: ContentMasterPage): ServiceP
       ...page.faq,
     },
     cta: page.cta,
+    extended: page.extended,
+    breadcrumbs: page.breadcrumbs,
+    internalLinks: page.internalLinks,
   };
 }

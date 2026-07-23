@@ -1,0 +1,131 @@
+---
+import HeroImage from "./HeroImage.astro";
+
+interface Props {
+  title: string;
+  text: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  imageFilename: string;
+  imageAlt: string;
+}
+
+const {
+  title,
+  text,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  imageFilename,
+  imageAlt,
+} = Astro.props;
+---
+
+<section class="service-cta-banner" aria-labelledby="service-cta-banner-heading">
+  <div class="service-cta-banner__inner container">
+    <div class="service-cta-banner__content">
+      <h2 id="service-cta-banner-heading" class="service-cta-banner__title">{title}</h2>
+      <p class="service-cta-banner__text">{text}</p>
+      <div class="service-cta-banner__actions">
+        <a href={primaryHref} class="service-cta-banner__btn service-cta-banner__btn--primary">
+          {primaryLabel}
+        </a>
+        {
+          secondaryLabel && secondaryHref && (
+            <a href={secondaryHref} class="service-cta-banner__btn service-cta-banner__btn--secondary">
+              {secondaryLabel}
+            </a>
+          )
+        }
+      </div>
+    </div>
+    <div class="service-cta-banner__media">
+      <HeroImage filename={imageFilename} alt={imageAlt} aspectRatio="5 / 4" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-cta-banner {
+    padding-block: var(--space-3xl);
+    background-color: var(--color-navy);
+  }
+
+  .service-cta-banner__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .service-cta-banner__title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--color-white);
+    margin-bottom: var(--space-md);
+  }
+
+  .service-cta-banner__text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: var(--space-xl);
+    max-width: 520px;
+  }
+
+  .service-cta-banner__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .service-cta-banner__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.25rem;
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .service-cta-banner__btn--primary {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  .service-cta-banner__btn--primary:hover {
+    background-color: var(--color-gold-hover);
+    transform: translateY(-2px);
+  }
+
+  .service-cta-banner__btn--secondary {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-blue);
+  }
+
+  .service-cta-banner__btn--secondary:hover {
+    background-color: var(--color-blue);
+    color: var(--color-navy);
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 768px) {
+    .service-cta-banner__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .service-cta-banner__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+</style>

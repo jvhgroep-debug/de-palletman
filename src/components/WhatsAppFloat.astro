@@ -1,10 +1,15 @@
 ---
+interface Props {
+  desktopOnly?: boolean;
+}
+
+const { desktopOnly = false } = Astro.props;
 const whatsappHref = "https://wa.me/31612345678";
 ---
 
 <a
   href={whatsappHref}
-  class="whatsapp-float"
+  class:list={["whatsapp-float", desktopOnly && "whatsapp-float--desktop-only"]}
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Neem contact op via WhatsApp"
@@ -44,6 +49,16 @@ const whatsappHref = "https://wa.me/31612345678";
     height: 26px;
   }
 
+  .whatsapp-float--desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .whatsapp-float--desktop-only {
+      display: flex;
+    }
+  }
+
   @media (min-width: 768px) {
     .whatsapp-float {
       right: var(--space-xl);
@@ -61,7 +76,7 @@ const whatsappHref = "https://wa.me/31612345678";
 
 <style is:global>
   @media (max-width: 767px) {
-    body {
+    body:not(:has(.service-conversion-mobile)) {
       padding-bottom: calc(52px + var(--space-lg) + env(safe-area-inset-bottom, 0px));
     }
   }

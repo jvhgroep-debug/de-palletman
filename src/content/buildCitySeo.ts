@@ -79,7 +79,9 @@ export function resolveCityPageSeo(page: CityContentMaster): ResolvedPageSeo {
   const canonical = page.canonicalUrl ?? getCanonicalUrl(page.path);
   const ogTitle = page.openGraph?.title ?? page.metaTitle;
   const ogDescription = page.openGraph?.description ?? page.metaDescription;
-  const ogImage = getDefaultOgImageUrl();
+  const ogImage = page.imageFilename
+    ? `${SITE_CONFIG.url}/images/${page.imageFilename}`
+    : getDefaultOgImageUrl();
 
   return {
     metaTitle: page.metaTitle,

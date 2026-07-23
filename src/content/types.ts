@@ -36,6 +36,67 @@ export interface ContentIntro {
   text: string;
 }
 
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+export interface InternalLinkItem {
+  label: string;
+  href: string;
+}
+
+export interface ServiceImageCard {
+  filename: string;
+  alt: string;
+  title: string;
+  text: string;
+}
+
+export interface ServiceCtaBanner {
+  title: string;
+  text: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  imageFilename: string;
+  imageAlt: string;
+}
+
+export interface ServiceTransportSection extends ContentSection {
+  imageFilename: string;
+  imageAlt: string;
+}
+
+export interface ServiceConversion {
+  title: string;
+  text: string;
+}
+
+export interface ServiceQuoteForm {
+  title: string;
+  intro: string;
+}
+
+/** Optionele extra secties voor volledig uitgewerkte dienstenpagina's. */
+export interface ServiceExtendedSections {
+  whenToChoose?: ContentSection;
+  specifications?: ContentSection;
+  dimensions?: ContentSection;
+  delivery?: ContentSection;
+  pickup?: ContentSection;
+  largeBatches?: ContentIntro;
+  smallBatches?: ContentIntro;
+  trust?: ContentSection;
+  practical?: ContentSection;
+  europalletInfo?: ContentSection & { imageCards: ServiceImageCard[] };
+  transport?: ServiceTransportSection;
+  conversion?: ServiceConversion;
+  ctaBanner?: ServiceCtaBanner;
+  quoteForm?: ServiceQuoteForm;
+}
+
 export interface ContentOpenGraph {
   title?: string;
   description?: string;
@@ -78,6 +139,9 @@ export interface ContentMasterPage {
   /** Placeholder-bestandsnaam voor hero-afbeelding. */
   imageFilename: string;
 
+  /** SEO alt-tekst voor hero-afbeelding. */
+  imageAlt: string;
+
   /** Introductiesectie. */
   intro: ContentIntro;
 
@@ -98,6 +162,15 @@ export interface ContentMasterPage {
 
   /** Call-to-action. */
   cta: ContentCta;
+
+  /** Optionele extra secties (dienstenpagina's). */
+  extended?: ServiceExtendedSections;
+
+  /** Optionele broodkruimels — ook gebruikt voor BreadcrumbList schema. */
+  breadcrumbs?: BreadcrumbItem[];
+
+  /** Optionele interne links onderaan de pagina. */
+  internalLinks?: InternalLinkItem[];
 
   /** SEO metadata. */
   seo: ContentSeo;

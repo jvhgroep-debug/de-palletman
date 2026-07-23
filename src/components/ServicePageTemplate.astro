@@ -1,10 +1,18 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import PageBreadcrumbs from "./PageBreadcrumbs.astro";
 import PageHero from "./PageHero.astro";
 import PageIntro from "./PageIntro.astro";
 import PageContent from "./PageContent.astro";
+import PageTextSection from "./PageTextSection.astro";
 import PageFaq from "./PageFaq.astro";
 import PageCta from "./PageCta.astro";
+import PageInternalLinks from "./PageInternalLinks.astro";
+import PageServiceConversion from "./PageServiceConversion.astro";
+import PageImageCards from "./PageImageCards.astro";
+import PageServiceCtaBanner from "./PageServiceCtaBanner.astro";
+import PageQuoteForm from "./PageQuoteForm.astro";
+import HeroImage from "./HeroImage.astro";
 import type { ContentMasterPage } from "../content/types";
 import { mapContentMasterToServicePage } from "../content/mapToServicePage";
 import { resolvePageSeo } from "../content/buildSeo";
@@ -17,6 +25,8 @@ const { page } = Astro.props;
 
 const content = mapContentMasterToServicePage(page);
 const seo = resolvePageSeo(page);
+const ext = content.extended;
+const isMasterPage = Boolean(ext?.conversion);
 ---
 
 <PageLayout
@@ -28,18 +38,117 @@ const seo = resolvePageSeo(page);
   ogImage={seo.openGraph.image}
   schema={seo.schema}
   currentPath={content.path}
+  mobileConversionBar={isMasterPage}
 >
+  {content.breadcrumbs && content.breadcrumbs.length > 0 && (
+    <PageBreadcrumbs items={content.breadcrumbs} />
+  )}
+
   <PageHero
     eyebrow={content.hero.eyebrow}
     title={content.hero.title}
     subtitle={content.hero.subtitle}
     imageFilename={content.hero.imageFilename}
+    imageAlt={content.hero.imageAlt}
   />
 
   <PageIntro
     eyebrow={content.intro.eyebrow}
     title={content.intro.title}
     text={content.intro.text}
+  />
+
+  {
+    ext?.conversion && (
+      <PageServiceConversion title={ext.conversion.title} text={ext.conversion.text} />
+    )
+  }
+
+  {
+    ext?.whenToChoose && (
+      <PageContent
+        id="wanneer-kiezen-heading"
+        eyebrow={ext.whenToChoose.eyebrow}
+        title={ext.whenToChoose.title}
+        intro={ext.whenToChoose.intro}
+        columns={ext.whenToChoose.columns ?? 2}
+        items={ext.whenToChoose.items}
+      />
+    )
+  }
+
+  {
+    ext?.trust && (
+      <PageContent
+        id="vertrouwen-heading"
+        eyebrow={ext.trust.eyebrow}
+        title={ext.trust.title}
+        intro={ext.trust.intro}
+        columns={ext.trust.columns ?? 3}
+        items={ext.trust.items}
+        variant="white"
+      />
+    )
+  }
+
+  <PageContent
+    id={content.sectionBenefits.id}
+    eyebrow={content.sectionBenefits.eyebrow}
+    title={content.sectionBenefits.title}
+    intro={content.sectionBenefits.intro}
+    columns={content.sectionBenefits.columns ?? 2}
+    items={content.sectionBenefits.items}
+    variant={ext?.trust ? "gray" : content.sectionBenefits.variant ?? "white"}
+  />
+
+  {
+    ext?.europalletInfo && (
+      <PageImageCards
+        id="europallet-info-heading"
+        eyebrow={ext.europalletInfo.eyebrow}
+        title={ext.europalletInfo.title}
+        intro={ext.europalletInfo.intro}
+        items={ext.europalletInfo.imageCards}
+        variant="white"
+      />
+    )
+  }
+
+  {
+    ext?.specifications && (
+      <PageContent
+        id="specificaties-heading"
+        eyebrow={ext.specifications.eyebrow}
+        title={ext.specifications.title}
+        intro={ext.specifications.intro}
+        columns={ext.specifications.columns ?? 2}
+        items={ext.specifications.items}
+      />
+    )
+  }
+
+  {
+    ext?.dimensions && (
+      <PageContent
+        id="afmetingen-heading"
+        eyebrow={ext.dimensions.eyebrow}
+        title={ext.dimensions.title}
+        intro={ext.dimensions.intro}
+        columns={ext.dimensions.columns ?? 3}
+        items={ext.dimensions.items}
+        variant="white"
+      />
+    )
+  }
+
+  <PageContent
+    id={content.sectionQualities.id}
+    eyebrow={content.sectionQualities.eyebrow}
+    title={content.sectionQualities.title}
+    intro={content.sectionQualities.intro}
+    variant={content.sectionQualities.variant ?? "gray"}
+    columns={content.sectionQualities.columns ?? 3}
+    items={content.sectionQualities.items}
   />
 
   <PageContent
@@ -49,35 +158,124 @@ const seo = resolvePageSeo(page);
     intro={content.sectionTypes.intro}
     columns={content.sectionTypes.columns ?? 3}
     items={content.sectionTypes.items}
+    variant="white"
   />
 
-  <PageContent
-    id={content.sectionQualities.id}
-    eyebrow={content.sectionQualities.eyebrow}
-    title={content.sectionQualities.title}
-    intro={content.sectionQualities.intro}
-    variant={content.sectionQualities.variant ?? "white"}
-    columns={content.sectionQualities.columns ?? 3}
-    items={content.sectionQualities.items}
-  />
+  {
+    ext?.practical && (
+      <PageContent
+        id="praktisch-heading"
+        eyebrow={ext.practical.eyebrow}
+        title={ext.practical.title}
+        intro={ext.practical.intro}
+        columns={ext.practical.columns ?? 2}
+        items={ext.practical.items}
+      />
+    )
+  }
 
-  <PageContent
-    id={content.sectionBenefits.id}
-    eyebrow={content.sectionBenefits.eyebrow}
-    title={content.sectionBenefits.title}
-    intro={content.sectionBenefits.intro}
-    columns={content.sectionBenefits.columns ?? 2}
-    items={content.sectionBenefits.items}
-  />
+  {
+    ext?.delivery && (
+      <PageContent
+        id="levering-heading"
+        eyebrow={ext.delivery.eyebrow}
+        title={ext.delivery.title}
+        intro={ext.delivery.intro}
+        columns={ext.delivery.columns ?? 2}
+        items={ext.delivery.items}
+        variant="white"
+      />
+    )
+  }
+
+  {
+    ext?.transport && (
+      <>
+        <section class="service-transport" aria-labelledby="transport-heading">
+          <div class="service-transport__inner container">
+            <header class="service-transport__header">
+              <p class="service-transport__eyebrow">{ext.transport.eyebrow}</p>
+              <h2 id="transport-heading" class="service-transport__title">{ext.transport.title}</h2>
+              <p class="service-transport__intro">{ext.transport.intro}</p>
+            </header>
+            <div class="service-transport__media">
+              <HeroImage
+                filename={ext.transport.imageFilename}
+                alt={ext.transport.imageAlt}
+                aspectRatio="16 / 9"
+              />
+            </div>
+          </div>
+        </section>
+        <PageContent
+          columns={ext.transport.columns ?? 2}
+          items={ext.transport.items}
+          variant="gray"
+        />
+      </>
+    )
+  }
+
+  {
+    ext?.pickup && (
+      <PageContent
+        id="ophalen-heading"
+        eyebrow={ext.pickup.eyebrow}
+        title={ext.pickup.title}
+        intro={ext.pickup.intro}
+        columns={ext.pickup.columns ?? 2}
+        items={ext.pickup.items}
+        variant="white"
+      />
+    )
+  }
+
+  {
+    ext?.largeBatches && (
+      <PageTextSection
+        id="grote-partijen-heading"
+        eyebrow={ext.largeBatches.eyebrow}
+        title={ext.largeBatches.title}
+        text={ext.largeBatches.text}
+      />
+    )
+  }
+
+  {
+    ext?.smallBatches && (
+      <PageTextSection
+        id="kleine-partijen-heading"
+        eyebrow={ext.smallBatches.eyebrow}
+        title={ext.smallBatches.title}
+        text={ext.smallBatches.text}
+        variant="gray"
+      />
+    )
+  }
 
   <PageFaq
     id={content.faq.id}
     eyebrow={content.faq.eyebrow}
     title={content.faq.title}
     intro={content.faq.intro}
-    variant={content.faq.variant ?? "white"}
+    variant="white"
     items={content.faq.items}
   />
+
+  {
+    ext?.ctaBanner && (
+      <PageServiceCtaBanner
+        title={ext.ctaBanner.title}
+        text={ext.ctaBanner.text}
+        primaryLabel={ext.ctaBanner.primaryLabel}
+        primaryHref={ext.ctaBanner.primaryHref}
+        secondaryLabel={ext.ctaBanner.secondaryLabel}
+        secondaryHref={ext.ctaBanner.secondaryHref}
+        imageFilename={ext.ctaBanner.imageFilename}
+        imageAlt={ext.ctaBanner.imageAlt}
+      />
+    )
+  }
 
   <PageCta
     title={content.cta.title}
@@ -87,4 +285,56 @@ const seo = resolvePageSeo(page);
     secondaryLabel={content.cta.secondaryLabel}
     secondaryHref={content.cta.secondaryHref}
   />
+
+  {
+    ext?.quoteForm && (
+      <PageQuoteForm title={ext.quoteForm.title} intro={ext.quoteForm.intro} />
+    )
+  }
+
+  {
+    content.internalLinks && content.internalLinks.length > 0 && (
+      <PageInternalLinks links={content.internalLinks} />
+    )
+  }
 </PageLayout>
+
+<style>
+  .service-transport {
+    padding-block: var(--space-2xl) 0;
+    background-color: var(--color-white);
+  }
+
+  .service-transport__header {
+    max-width: 720px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .service-transport__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .service-transport__title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    margin-bottom: var(--space-md);
+  }
+
+  .service-transport__intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+  }
+
+  .service-transport__media {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+</style>

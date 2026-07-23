@@ -1,0 +1,77 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+---
+
+<PageLayout
+  title="Privacybeleid | De Palletman"
+  description="Privacybeleid van De Palletman. Lees hoe wij omgaan met uw persoonsgegevens."
+  currentPath="/privacy"
+>
+  <PageIntro
+    eyebrow="Privacy"
+    title="Privacybeleid"
+    text="De Palletman respecteert uw privacy. Op deze pagina leest u hoe wij omgaan met persoonsgegevens die u via onze website of bij contact met ons deelt."
+  />
+  <section class="legal container">
+    <h2>Gegevens die wij verwerken</h2>
+    <p>
+      Wij verwerken alleen gegevens die u vrijwillig aan ons verstrekt, bijvoorbeeld via het
+      contactformulier, telefoon, e-mail of WhatsApp. Denk aan naam, bedrijfsnaam, telefoonnummer,
+      e-mailadres en informatie over uw palletvraag.
+    </p>
+    <h2>Doel van verwerking</h2>
+    <p>
+      Wij gebruiken uw gegevens uitsluitend om contact met u op te nemen, offertes op te stellen,
+      afspraken te plannen en onze dienstverlening uit te voeren.
+    </p>
+    <h2>Bewaartermijn</h2>
+    <p>
+      Wij bewaren uw gegevens niet langer dan nodig voor het doel waarvoor zij zijn verstrekt, tenzij
+      een langere bewaartermijn wettelijk verplicht is.
+    </p>
+    <h2>Uw rechten</h2>
+    <p>
+      U heeft het recht om inzage te vragen in uw gegevens, deze te laten corrigeren of te laten
+      verwijderen. Neem hiervoor contact op via <a href="mailto:info@depalletman.nl">info@depalletman.nl</a>.
+    </p>
+    <h2>Contact</h2>
+    <p>
+      Vragen over dit privacybeleid? Neem contact op via onze <a href="/contact">contactpagina</a>.
+    </p>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    padding-block: 0 var(--space-3xl);
+    max-width: 720px;
+  }
+
+  .legal h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin: var(--space-xl) 0 var(--space-sm);
+  }
+
+  .legal h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-md);
+  }
+
+  .legal a {
+    color: var(--color-blue);
+    font-weight: 600;
+  }
+
+  .legal a:hover {
+    color: var(--color-navy);
+  }
+</style>

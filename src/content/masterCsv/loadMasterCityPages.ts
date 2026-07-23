@@ -6,11 +6,9 @@ import { masterRowsToCityContentMaster } from "./mapToCityContentMaster.ts";
 import { parseMasterCsv } from "./parseMasterCsv.ts";
 import { validateMasterCsvRows } from "./validateMasterCsv.ts";
 import type { MasterCityRow } from "./types.ts";
+import { ACTIVE_CITY_SLUGS, type ActiveCitySlug } from "./activeCitySlugs.ts";
 
-/** Steden die momenteel uit de Master CSV worden gegenereerd. */
-export const ACTIVE_CITY_SLUGS = ["breda", "tilburg", "eindhoven"] as const;
-
-export type ActiveCitySlug = (typeof ACTIVE_CITY_SLUGS)[number];
+export { ACTIVE_CITY_SLUGS, type ActiveCitySlug } from "./activeCitySlugs.ts";
 
 function assertUniqueMeta(rows: MasterCityRow[]): void {
   const titles = new Set<string>();

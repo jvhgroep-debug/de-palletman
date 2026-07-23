@@ -1,6 +1,6 @@
 /** Globale site-instellingen voor canonical, Open Graph en schema. */
 export const SITE_CONFIG = {
-  url: "https://de-palletman.pages.dev",
+  url: "https://www.depalletman.nl",
   name: "De Palletman",
   locale: "nl_NL",
   defaultOgImage: "/favicon.svg",

@@ -9,12 +9,17 @@
     "dev": "astro dev",
     "prebuild": "npm run validate:master-csv",
     "build": "astro build",
+    "postbuild": "node --experimental-strip-types scripts/copy-sitemap.ts",
     "preview": "astro preview",
     "astro": "astro",
     "validate:master-csv": "node --experimental-strip-types scripts/validate-master-csv.ts",
-    "build:master-csv": "node --experimental-strip-types scripts/build-master-csv.ts"
+    "build:master-csv": "node --experimental-strip-types scripts/build-master-csv.ts",
+    "generate:master-csv": "node --experimental-strip-types scripts/generate-full-master-csv.ts",
+    "report:local-engine": "node --experimental-strip-types scripts/report-local-engine.ts",
+    "audit:seo": "node --experimental-strip-types scripts/seo-production-audit.ts"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.1.3"
   }
 }

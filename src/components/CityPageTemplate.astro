@@ -9,6 +9,7 @@ import PageProcess from "./PageProcess.astro";
 import PageFaq from "./PageFaq.astro";
 import PageCta from "./PageCta.astro";
 import PageInternalLinks from "./PageInternalLinks.astro";
+import PageQuoteForm from "./PageQuoteForm.astro";
 import type { CityContentMaster } from "../content/cityTypes";
 import { mapContentMasterToCityPage } from "../content/mapToCityPage";
 import { resolveCityPageSeo } from "../content/buildCitySeo";
@@ -21,6 +22,7 @@ const { page } = Astro.props;
 
 const content = mapContentMasterToCityPage(page);
 const seo = resolveCityPageSeo(page);
+const ext = content.extended;
 ---
 
 <PageLayout
@@ -40,6 +42,7 @@ const seo = resolveCityPageSeo(page);
     title={content.hero.title}
     subtitle={content.hero.subtitle}
     imageFilename={content.hero.imageFilename}
+    imageAlt={`Gebruikte pallets kopen en verkopen in ${page.cityName}`}
   />
 
   <PageIntro
@@ -48,12 +51,40 @@ const seo = resolveCityPageSeo(page);
     text={content.intro.text}
   />
 
+  {
+    ext?.trust && (
+      <PageContent
+        id="vertrouwen-heading"
+        eyebrow={ext.trust.eyebrow}
+        title={ext.trust.title}
+        intro={ext.trust.intro}
+        columns={ext.trust.columns ?? 3}
+        items={ext.trust.items}
+        variant="white"
+      />
+    )
+  }
+
+  {
+    ext?.whyChooseUs && (
+      <PageContent
+        id="waarom-kiezen-heading"
+        eyebrow={ext.whyChooseUs.eyebrow}
+        title={ext.whyChooseUs.title}
+        intro={ext.whyChooseUs.intro}
+        columns={ext.whyChooseUs.columns ?? 3}
+        items={ext.whyChooseUs.items}
+        variant="gray"
+      />
+    )
+  }
+
   <PageTextSection
     id={content.palletsBuy.id}
     eyebrow={content.palletsBuy.eyebrow ?? "Voor bedrijven"}
     title={content.palletsBuy.title}
     text={content.palletsBuy.text}
-    variant="gray"
+    variant={ext?.trust ? "gray" : "gray"}
   />
 
   <PageTextSection
@@ -63,24 +94,213 @@ const seo = resolveCityPageSeo(page);
     text={content.palletsSell.text}
   />
 
-  <PageContent
-    id={content.palletTypes.id}
-    eyebrow={content.palletTypes.eyebrow}
-    title={content.palletTypes.title}
-    intro={content.palletTypes.intro}
-    columns={content.palletTypes.columns ?? 3}
-    items={content.palletTypes.items}
-  />
+  {
+    ext?.targetIndustries && (
+      <PageContent
+        id="doelgroepen-heading"
+        eyebrow={ext.targetIndustries.eyebrow}
+        title={ext.targetIndustries.title}
+        intro={ext.targetIndustries.intro}
+        columns={ext.targetIndustries.columns ?? 3}
+        items={ext.targetIndustries.items}
+        variant="gray"
+      />
+    )
+  }
 
-  <PageContent
-    id={content.transport.id}
-    eyebrow={content.transport.eyebrow}
-    title={content.transport.title}
-    intro={content.transport.intro}
-    variant={content.transport.variant ?? "white"}
-    columns={content.transport.columns ?? 2}
-    items={content.transport.items}
-  />
+  {
+    ext?.palletFormats && (
+      <PageContent
+        id="palletformaten-heading"
+        eyebrow={ext.palletFormats.eyebrow}
+        title={ext.palletFormats.title}
+        intro={ext.palletFormats.intro}
+        columns={ext.palletFormats.columns ?? 3}
+        items={ext.palletFormats.items}
+      />
+    )
+  }
+
+  {
+    ext?.europallets && (
+      <PageContent
+        id="europallets-heading"
+        eyebrow={ext.europallets.eyebrow}
+        title={ext.europallets.title}
+        intro={ext.europallets.intro}
+        columns={ext.europallets.columns ?? 2}
+        items={ext.europallets.items}
+        variant="gray"
+      />
+    )
+  }
+
+  {
+    ext?.blokpallets && (
+      <PageContent
+        id="blokpallets-heading"
+        eyebrow={ext.blokpallets.eyebrow}
+        title={ext.blokpallets.title}
+        intro={ext.blokpallets.intro}
+        columns={ext.blokpallets.columns ?? 2}
+        items={ext.blokpallets.items}
+      />
+    )
+  }
+
+  {
+    ext?.wegwerppallets && (
+      <PageContent
+        id="wegwerppallets-heading"
+        eyebrow={ext.wegwerppallets.eyebrow}
+        title={ext.wegwerppallets.title}
+        intro={ext.wegwerppallets.intro}
+        columns={ext.wegwerppallets.columns ?? 2}
+        items={ext.wegwerppallets.items}
+        variant="gray"
+      />
+    )
+  }
+
+  {
+    !ext && (
+      <PageContent
+        id={content.palletTypes.id}
+        eyebrow={content.palletTypes.eyebrow}
+        title={content.palletTypes.title}
+        intro={content.palletTypes.intro}
+        columns={content.palletTypes.columns ?? 3}
+        items={content.palletTypes.items}
+      />
+    )
+  }
+
+  {
+    ext?.qualities && (
+      <PageContent
+        id="kwaliteiten-heading"
+        eyebrow={ext.qualities.eyebrow}
+        title={ext.qualities.title}
+        intro={ext.qualities.intro}
+        columns={ext.qualities.columns ?? 2}
+        items={ext.qualities.items}
+        variant="white"
+      />
+    )
+  }
+
+  {
+    ext?.exportDetail && (
+      <PageContent
+        id="export-heading"
+        eyebrow={ext.exportDetail.eyebrow}
+        title={ext.exportDetail.title}
+        intro={ext.exportDetail.intro}
+        columns={ext.exportDetail.columns ?? 2}
+        items={ext.exportDetail.items}
+        variant="gray"
+      />
+    )
+  }
+
+  {
+    ext?.htExport && !ext?.exportDetail && (
+      <PageTextSection
+        id="ht-export-heading"
+        eyebrow="Export"
+        title={ext.htExport.title}
+        text={ext.htExport.text}
+        variant="white"
+      />
+    )
+  }
+
+  {
+    ext?.largeBatches && (
+      <PageTextSection
+        id="grote-partijen-heading"
+        eyebrow="Volume"
+        title={ext.largeBatches.title}
+        text={ext.largeBatches.text}
+        variant="gray"
+      />
+    )
+  }
+
+  {
+    ext?.smallBatches && (
+      <PageTextSection
+        id="kleine-partijen-heading"
+        eyebrow="Volume"
+        title={ext.smallBatches.title}
+        text={ext.smallBatches.text}
+      />
+    )
+  }
+
+  {
+    ext?.pickup && (
+      <PageTextSection
+        id="ophalen-heading"
+        eyebrow="Transport"
+        title={ext.pickup.title}
+        text={ext.pickup.text}
+        variant="gray"
+      />
+    )
+  }
+
+  {
+    ext?.delivery && (
+      <PageTextSection
+        id="bezorgen-heading"
+        eyebrow="Transport"
+        title={ext.delivery.title}
+        text={ext.delivery.text}
+      />
+    )
+  }
+
+  {
+    !ext && (
+      <PageContent
+        id={content.transport.id}
+        eyebrow={content.transport.eyebrow}
+        title={content.transport.title}
+        intro={content.transport.intro}
+        variant={content.transport.variant ?? "white"}
+        columns={content.transport.columns ?? 2}
+        items={content.transport.items}
+      />
+    )
+  }
+
+  {
+    ext?.werkgebied && (
+      <PageContent
+        id="werkgebied-heading"
+        eyebrow={ext.werkgebied.eyebrow}
+        title={ext.werkgebied.title}
+        intro={ext.werkgebied.intro}
+        columns={ext.werkgebied.columns ?? 3}
+        items={ext.werkgebied.items}
+        variant="gray"
+      />
+    )
+  }
+
+  {
+    ext?.localAdvantages && (
+      <PageContent
+        id="lokale-voordelen-heading"
+        eyebrow={ext.localAdvantages.eyebrow}
+        title={ext.localAdvantages.title}
+        intro={ext.localAdvantages.intro}
+        columns={ext.localAdvantages.columns ?? 3}
+        items={ext.localAdvantages.items}
+      />
+    )
+  }
 
   <PageContent
     id={content.industrialAreas.id}
@@ -89,7 +309,21 @@ const seo = resolveCityPageSeo(page);
     intro={content.industrialAreas.intro}
     columns={content.industrialAreas.columns ?? 3}
     items={content.industrialAreas.items}
+    variant={ext?.localAdvantages ? "gray" : undefined}
   />
+
+  {
+    ext?.accessibility && (
+      <PageContent
+        id="bereikbaarheid-heading"
+        eyebrow={ext.accessibility.eyebrow}
+        title={ext.accessibility.title}
+        intro={ext.accessibility.intro}
+        columns={ext.accessibility.columns ?? 3}
+        items={ext.accessibility.items}
+      />
+    )
+  }
 
   <PageContent
     id={content.surroundingPlaces.id}
@@ -101,7 +335,27 @@ const seo = resolveCityPageSeo(page);
     items={content.surroundingPlaces.items}
   />
 
-  <PageProcess steps={content.processSteps} />
+  <PageProcess
+    steps={content.processSteps}
+    eyebrow={ext?.processMeta?.eyebrow}
+    title={ext?.processMeta?.title}
+    intro={ext?.processMeta?.intro}
+    id="proces-heading"
+  />
+
+  {
+    ext?.reviews && (
+      <PageContent
+        id="reviews-heading"
+        eyebrow={ext.reviews.eyebrow}
+        title={ext.reviews.title}
+        intro={ext.reviews.intro}
+        columns={ext.reviews.columns ?? 3}
+        items={ext.reviews.items}
+        variant="gray"
+      />
+    )
+  }
 
   <PageFaq
     id={content.faq.id}
@@ -120,6 +374,25 @@ const seo = resolveCityPageSeo(page);
     secondaryLabel={content.cta.secondaryLabel}
     secondaryHref={content.cta.secondaryHref}
   />
+
+  {
+    ext?.quoteForm && (
+      <PageQuoteForm title={ext.quoteForm.title} intro={ext.quoteForm.intro} />
+    )
+  }
+
+  {
+    ext?.secondaryCta && (
+      <PageCta
+        title={ext.secondaryCta.title}
+        text={ext.secondaryCta.text}
+        primaryLabel={ext.secondaryCta.primaryLabel}
+        primaryHref={ext.secondaryCta.primaryHref}
+        secondaryLabel={ext.secondaryCta.secondaryLabel}
+        secondaryHref={ext.secondaryCta.secondaryHref}
+      />
+    )
+  }
 
   <PageInternalLinks links={content.internalLinks} />
 </PageLayout>

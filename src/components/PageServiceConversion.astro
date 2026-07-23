@@ -1,0 +1,227 @@
+---
+interface Props {
+  title?: string;
+  text?: string;
+  quoteAnchor?: string;
+}
+
+const {
+  title = "Snelle offerte binnen 24 uur",
+  text = "Bel direct, stuur een WhatsApp of vraag vrijblijvend een offerte aan. Wij reageren snel met een heldere prijsopgave.",
+  quoteAnchor = "#offerte-formulier-heading",
+} = Astro.props;
+
+const phoneHref = "+31612345678";
+const whatsappHref = "https://wa.me/31612345678";
+---
+
+<section class="service-conversion" aria-labelledby="service-conversion-heading">
+  <div class="service-conversion__inner container">
+    <div class="service-conversion__content">
+      <p class="service-conversion__eyebrow">Direct contact</p>
+      <h2 id="service-conversion-heading" class="service-conversion__title">{title}</h2>
+      <p class="service-conversion__text">{text}</p>
+    </div>
+    <div class="service-conversion__actions">
+      <a href={`tel:${phoneHref}`} class="service-conversion__btn service-conversion__btn--call">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        Bel direct
+      </a>
+      <a href={quoteAnchor} class="service-conversion__btn service-conversion__btn--quote">
+        Vraag offerte aan
+      </a>
+      <a
+        href={whatsappHref}
+        class="service-conversion__btn service-conversion__btn--whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="service-conversion-mobile" aria-label="Snelle contactmogelijkheden">
+  <a href={`tel:${phoneHref}`} class="service-conversion-mobile__btn service-conversion-mobile__btn--call">
+    Bel
+  </a>
+  <a href={quoteAnchor} class="service-conversion-mobile__btn service-conversion-mobile__btn--quote">
+    Offerte
+  </a>
+  <a
+    href={whatsappHref}
+    class="service-conversion-mobile__btn service-conversion-mobile__btn--whatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    WhatsApp
+  </a>
+</div>
+
+<style>
+  .service-conversion {
+    padding-block: var(--space-2xl);
+    background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 100%);
+    border-block: 3px solid var(--color-gold);
+  }
+
+  .service-conversion__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .service-conversion__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: var(--space-sm);
+  }
+
+  .service-conversion__title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: var(--color-white);
+    margin-bottom: var(--space-sm);
+  }
+
+  .service-conversion__text {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 560px;
+  }
+
+  .service-conversion__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .service-conversion__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    min-height: 3.25rem;
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .service-conversion__btn--call {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  .service-conversion__btn--call:hover {
+    background-color: var(--color-gold-hover);
+    transform: translateY(-2px);
+  }
+
+  .service-conversion__btn--quote {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-blue);
+  }
+
+  .service-conversion__btn--quote:hover {
+    background-color: var(--color-blue);
+    color: var(--color-navy);
+    transform: translateY(-2px);
+  }
+
+  .service-conversion__btn--whatsapp {
+    background-color: #25d366;
+    color: var(--color-white);
+  }
+
+  .service-conversion__btn--whatsapp:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+  }
+
+  .service-conversion-mobile {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .service-conversion__inner {
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .service-conversion__actions {
+      justify-self: end;
+      min-width: 280px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .service-conversion-mobile {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 95;
+      background-color: var(--color-navy);
+      border-top: 2px solid var(--color-gold);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .service-conversion-mobile__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      font-size: 0.8125rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-white);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .service-conversion-mobile__btn:last-child {
+      border-right: none;
+    }
+
+    .service-conversion-mobile__btn--call {
+      background-color: var(--color-gold);
+      color: var(--color-navy);
+    }
+
+    .service-conversion-mobile__btn--quote {
+      background-color: var(--color-navy-dark);
+    }
+
+    .service-conversion-mobile__btn--whatsapp {
+      background-color: #25d366;
+    }
+  }
+</style>
+
+<style is:global>
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+</style>

@@ -13,3 +13,4 @@ export * from "./provinceRegistry";
 export * from "./cityRegistry";
 export * from "./cityGenerator";
 export * from "./masterCsv";
+export * from "./localEngine";

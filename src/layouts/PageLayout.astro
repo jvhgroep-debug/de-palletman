@@ -14,10 +14,21 @@ interface Props {
   ogDescription?: string;
   ogImage?: string;
   schema?: Record<string, unknown>;
+  /** Verberg zwevende WhatsApp-knop op mobiel (pagina heeft eigen sticky conversiebalk). */
+  mobileConversionBar?: boolean;
 }
 
-const { title, description, currentPath, canonical, ogTitle, ogDescription, ogImage, schema } =
-  Astro.props;
+const {
+  title,
+  description,
+  currentPath,
+  canonical,
+  ogTitle,
+  ogDescription,
+  ogImage,
+  schema,
+  mobileConversionBar = false,
+} = Astro.props;
 ---
 
 <Layout
@@ -35,5 +46,5 @@ const { title, description, currentPath, canonical, ogTitle, ogDescription, ogIm
     <slot />
   </main>
   <Footer />
-  <WhatsAppFloat />
+  <WhatsAppFloat desktopOnly={mobileConversionBar} />
 </Layout>

@@ -1,14 +1,15 @@
 ---
-import ImagePlaceholder from "./ImagePlaceholder.astro";
+import HeroImage from "./HeroImage.astro";
 
 interface Props {
   eyebrow: string;
   title: string;
   subtitle: string;
   imageFilename: string;
+  imageAlt: string;
 }
 
-const { eyebrow, title, subtitle, imageFilename } = Astro.props;
+const { eyebrow, title, subtitle, imageFilename, imageAlt } = Astro.props;
 ---
 
 <section class="page-hero" aria-labelledby="page-hero-heading">
@@ -19,7 +20,7 @@ const { eyebrow, title, subtitle, imageFilename } = Astro.props;
       <p class="page-hero__subtitle">{subtitle}</p>
     </div>
     <div class="page-hero__media">
-      <ImagePlaceholder filename={imageFilename} aspectRatio="16 / 9" />
+      <HeroImage filename={imageFilename} alt={imageAlt} aspectRatio="16 / 9" />
     </div>
   </div>
 </section>

@@ -1,0 +1,217 @@
+---
+interface Props {
+  title?: string;
+  intro?: string;
+  id?: string;
+}
+
+const {
+  title = "Offerte aanvragen",
+  intro = "Vul het formulier in en ontvang binnen 24 uur een vrijblijvende offerte. Vermeld type pallet, gewenste kwaliteit, aantal en uw locatie.",
+  id = "offerte-formulier-heading",
+} = Astro.props;
+
+const phoneHref = "+31612345678";
+---
+
+<section class="page-quote-form" aria-labelledby={id}>
+  <div class="page-quote-form__inner container">
+    <header class="page-quote-form__header">
+      <p class="page-quote-form__eyebrow">Snelle offerte binnen 24 uur</p>
+      <h2 id={id} class="page-quote-form__title">{title}</h2>
+      <p class="page-quote-form__intro">{intro}</p>
+    </header>
+
+    <form class="page-quote-form__form" action="/contact" method="get">
+      <div class="page-quote-form__grid">
+        <div class="page-quote-form__field">
+          <label for="quote-name">Naam *</label>
+          <input id="quote-name" name="naam" type="text" required autocomplete="name" />
+        </div>
+        <div class="page-quote-form__field">
+          <label for="quote-company">Bedrijfsnaam *</label>
+          <input id="quote-company" name="bedrijf" type="text" required autocomplete="organization" />
+        </div>
+        <div class="page-quote-form__field">
+          <label for="quote-email">E-mail *</label>
+          <input id="quote-email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="page-quote-form__field">
+          <label for="quote-phone">Telefoon *</label>
+          <input id="quote-phone" name="telefoon" type="tel" required autocomplete="tel" />
+        </div>
+        <div class="page-quote-form__field">
+          <label for="quote-type">Type pallet *</label>
+          <select id="quote-type" name="type" required>
+            <option value="">Kies een type</option>
+            <option value="europallets">Europallets</option>
+            <option value="blokpallets">Blokpallets</option>
+            <option value="wegwerppallets">Wegwerppallets</option>
+            <option value="onbekend">Weet ik nog niet</option>
+          </select>
+        </div>
+        <div class="page-quote-form__field">
+          <label for="quote-quality">Gewenste kwaliteit</label>
+          <select id="quote-quality" name="kwaliteit">
+            <option value="">Geen voorkeur</option>
+            <option value="a">A-kwaliteit (1e keus)</option>
+            <option value="b">B-kwaliteit (2e keus)</option>
+            <option value="ht">HT-gestempeld (export)</option>
+          </select>
+        </div>
+        <div class="page-quote-form__field">
+          <label for="quote-quantity">Aantal pallets *</label>
+          <input id="quote-quantity" name="aantal" type="text" required placeholder="Bijv. 50 europallets" />
+        </div>
+        <div class="page-quote-form__field">
+          <label for="quote-location">Plaats / regio *</label>
+          <input id="quote-location" name="locatie" type="text" required placeholder="Bijv. Breda" />
+        </div>
+        <div class="page-quote-form__field page-quote-form__field--full">
+          <label for="quote-message">Toelichting</label>
+          <textarea
+            id="quote-message"
+            name="bericht"
+            rows="4"
+            placeholder="Optioneel: toelichting over uw situatie, planning of speciale wensen."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="page-quote-form__actions">
+        <button type="submit" class="page-quote-form__submit">Vraag offerte aan</button>
+        <a href={`tel:${phoneHref}`} class="page-quote-form__call">Of bel direct: 06 12 34 56 78</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .page-quote-form {
+    padding-block: var(--space-3xl);
+    background-color: var(--color-gray-50);
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .page-quote-form__header {
+    max-width: 720px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .page-quote-form__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-quote-form__title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-quote-form__intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+  }
+
+  .page-quote-form__form {
+    max-width: 880px;
+  }
+
+  .page-quote-form__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  .page-quote-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .page-quote-form__field label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-navy);
+  }
+
+  .page-quote-form__field input,
+  .page-quote-form__field select,
+  .page-quote-form__field textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--color-navy);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-fast);
+  }
+
+  .page-quote-form__field input:focus,
+  .page-quote-form__field select:focus,
+  .page-quote-form__field textarea:focus {
+    outline: none;
+    border-color: var(--color-blue);
+  }
+
+  .page-quote-form__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .page-quote-form__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.25rem;
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+    background-color: var(--color-gold);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .page-quote-form__submit:hover {
+    background-color: var(--color-gold-hover);
+    transform: translateY(-2px);
+  }
+
+  .page-quote-form__call {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-blue);
+    transition: color var(--transition-fast);
+  }
+
+  .page-quote-form__call:hover {
+    color: var(--color-navy);
+  }
+
+  @media (min-width: 640px) {
+    .page-quote-form__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-quote-form__field--full {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

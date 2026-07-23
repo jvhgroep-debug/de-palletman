@@ -1,0 +1,72 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+---
+
+<PageLayout
+  title="Cookiebeleid | De Palletman"
+  description="Cookiebeleid van De Palletman. Lees welke cookies wij gebruiken en waarom."
+  currentPath="/cookies"
+>
+  <PageIntro
+    eyebrow="Cookies"
+    title="Cookiebeleid"
+    text="Deze website gebruikt een beperkt aantal cookies om de site goed te laten functioneren en het gebruik te analyseren."
+  />
+  <section class="legal container">
+    <h2>Wat zijn cookies?</h2>
+    <p>
+      Cookies zijn kleine tekstbestanden die op uw apparaat worden opgeslagen wanneer u onze website
+      bezoekt. Zij helpen ons de website te laten werken en te begrijpen hoe bezoekers de site
+      gebruiken.
+    </p>
+    <h2>Welke cookies gebruiken wij?</h2>
+    <p>
+      Wij gebruiken uitsluitend functionele cookies die nodig zijn voor de werking van de website.
+      Analytische cookies worden alleen geplaatst na uw toestemming, indien van toepassing.
+    </p>
+    <h2>Cookies beheren</h2>
+    <p>
+      U kunt cookies uitschakelen via de instellingen van uw browser. Houd er rekening mee dat sommige
+      onderdelen van de website dan minder goed kunnen werken.
+    </p>
+    <h2>Contact</h2>
+    <p>
+      Vragen over cookies? Neem contact op via onze <a href="/contact">contactpagina</a>.
+    </p>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    padding-block: 0 var(--space-3xl);
+    max-width: 720px;
+  }
+
+  .legal h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin: var(--space-xl) 0 var(--space-sm);
+  }
+
+  .legal h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-md);
+  }
+
+  .legal a {
+    color: var(--color-blue);
+    font-weight: 600;
+  }
+
+  .legal a:hover {
+    color: var(--color-navy);
+  }
+</style>

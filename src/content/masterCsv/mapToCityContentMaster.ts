@@ -1,16 +1,29 @@
 import { resolveProvinceName, resolveProvinceSlug } from "../cityGenerator/provinces.ts";
 import { buildCityPath, parsePipeList } from "../cityGenerator/utils.ts";
+import {
+  composeIndustrialItemText,
+  composeSurroundingItemText,
+} from "../localEngine/composeLocalContent.ts";
+import {
+  internalLinksFromMasterRow,
+  sectionTitlesFromMasterRow,
+  sellBodyFromMasterRow,
+} from "../localEngine/sectionTitlesFromRow.ts";
 import { getCanonicalUrl } from "../siteConfig.ts";
 import { validateCityContentMaster } from "../cityTypes.ts";
 import type { CityContentMaster } from "../cityTypes.ts";
 import type { CityInternalLink } from "../cityTypes.ts";
 import { buildExpectedImageFilename } from "./columns.ts";
+import { ACTIVE_CITY_SLUG_SET } from "./activeCitySlugs.ts";
 import type { MasterCityRow } from "./types.ts";
 
 export interface SiblingCity {
   name: string;
   slug: string;
+  provinceSlug: string;
 }
+
+const MAX_SIBLING_INTERNAL_LINKS = 4;
 
 const DEFAULT_PROCESS_STEPS = (cityName: string) => [
   {
@@ -31,17 +44,17 @@ const DEFAULT_PROCESS_STEPS = (cityName: string) => [
   },
 ];
 
-function buildIndustrialAreaItems(cityName: string, areas: string[]) {
-  return areas.map((area) => ({
+function buildIndustrialAreaItems(cityName: string, areas: string[], slug: string) {
+  return areas.map((area, index) => ({
     title: area,
-    text: `Bedrijventerrein ${area} in en rond ${cityName} — wij halen pallets op en bezorgen aan bedrijven op het terrein.`,
+    text: composeIndustrialItemText(cityName, area, slug, index),
   }));
 }
 
-function buildSurroundingPlaceItems(cityName: string, places: string[]) {
-  return places.map((place) => ({
+function buildSurroundingPlaceItems(cityName: string, places: string[], slug: string) {
+  return places.map((place, index) => ({
     title: place,
-    text: `Omliggende kern bij ${cityName} — ophalen en bezorgen op aanvraag in ${place} en omgeving.`,
+    text: composeSurroundingItemText(cityName, place, slug, index),
   }));
 }
 
@@ -72,7 +85,7 @@ function buildInternalLinks(
   provinceName: string,
   provinceSlug: string,
   currentSlug: string,
-  siblings: SiblingCity[],
+  nearbyLinks: Array<{ name: string; slug: string; provinceSlug: string }>,
 ): CityInternalLink[] {
   const links: CityInternalLink[] = [
     { label: provinceName, href: `/${provinceSlug}` },
@@ -84,13 +97,13 @@ function buildInternalLinks(
     { label: "Wegwerppallets", href: "/wegwerppallets" },
   ];
 
-  for (const sibling of siblings) {
-    if (sibling.slug !== currentSlug) {
-      links.push({
-        label: `Pallets ${sibling.name}`,
-        href: `/${provinceSlug}/pallets-${sibling.slug}`,
-      });
-    }
+  for (const target of nearbyLinks.slice(0, MAX_SIBLING_INTERNAL_LINKS)) {
+    if (target.slug === currentSlug) continue;
+    if (!ACTIVE_CITY_SLUG_SET.has(target.slug)) continue;
+    links.push({
+      label: `Pallets ${target.name}`,
+      href: `/${target.provinceSlug}/pallets-${target.slug}`,
+    });
   }
 
   return links;
@@ -102,7 +115,7 @@ function buildInternalLinks(
  */
 export function masterRowToCityContentMaster(
   row: MasterCityRow,
-  siblings: SiblingCity[] = [],
+  allCitiesInProvince: string[] = [],
 ): CityContentMaster {
   const provinceSlug = resolveProvinceSlug(row.province);
   const provinceName = resolveProvinceName(provinceSlug);
@@ -112,6 +125,8 @@ export function masterRowToCityContentMaster(
 
   const industrialAreaNames = parsePipeList(row.industrialAreas);
   const surroundingPlaceNames = parsePipeList(row.surroundingPlaces);
+  const sectionTitles = sectionTitlesFromMasterRow(row, allCitiesInProvince);
+  const nearbyLinks = internalLinksFromMasterRow(row);
 
   const page: CityContentMaster = {
     cityName,
@@ -129,8 +144,8 @@ export function masterRowToCityContentMaster(
     heroEyebrow: cityName,
 
     introduction: {
-      eyebrow: `Lokaal in ${cityName}`,
-      title: `De Palletman in ${cityName}`,
+      eyebrow: sectionTitles.introEyebrow,
+      title: sectionTitles.introTitle,
       text: row.intro.trim(),
     },
 
@@ -139,27 +154,27 @@ export function masterRowToCityContentMaster(
 
     palletServices: {
       buy: {
-        eyebrow: "Voor bedrijven",
-        title: `Pallets kopen voor bedrijven in ${cityName}`,
+        eyebrow: sectionTitles.buyEyebrow,
+        title: sectionTitles.buyTitle,
         text: row.services.trim(),
       },
       sell: {
-        eyebrow: "Inkoop",
-        title: "Pallets verkopen door bedrijven en particulieren",
-        text: `Heeft u overtollige pallets staan in ${cityName}? De Palletman koopt pallets in van bedrijven én particulieren. Geef type, kwaliteit en aantal door — wij halen op met eigen transport en handelen de verkoop snel af. Grote én kleine partijen zijn welkom.`,
+        eyebrow: sectionTitles.sellEyebrow,
+        title: sectionTitles.sellTitle,
+        text: sellBodyFromMasterRow(row, allCitiesInProvince),
       },
     },
 
     palletTypes: {
-      eyebrow: "Assortiment",
-      title: `Beschikbare palletsoorten in ${cityName}`,
+      eyebrow: sectionTitles.palletTypesEyebrow,
+      title: sectionTitles.palletTypesTitle,
       intro: row.palletTypes.trim(),
       items: buildPalletTypeItems(cityName),
     },
 
     transportText: {
-      eyebrow: "Logistiek",
-      title: `Ophalen en bezorgen in ${cityName}`,
+      eyebrow: sectionTitles.transportEyebrow,
+      title: sectionTitles.transportTitle,
       intro: row.transport.trim(),
       items: [
         {
@@ -177,25 +192,25 @@ export function masterRowToCityContentMaster(
     exportText: row.export.trim(),
 
     industrialAreas: {
-      eyebrow: "Bedrijventerreinen",
-      title: `Lokale bedrijventerreinen in ${cityName}`,
-      intro: `De Palletman is actief op en rond de belangrijkste bedrijventerreinen in ${cityName}. Onder meer:`,
-      items: buildIndustrialAreaItems(cityName, industrialAreaNames),
+      eyebrow: sectionTitles.industrialEyebrow,
+      title: sectionTitles.industrialTitle,
+      intro: sectionTitles.industrialIntro,
+      items: buildIndustrialAreaItems(cityName, industrialAreaNames, slug),
     },
 
     surroundingPlaces: {
-      eyebrow: "Regio",
-      title: `Omliggende plaatsen rond ${cityName}`,
-      intro: `Naast ${cityName} rijden wij ook in omliggende kernen in ${provinceName}. Denk aan:`,
-      items: buildSurroundingPlaceItems(cityName, surroundingPlaceNames),
+      eyebrow: sectionTitles.surroundingEyebrow,
+      title: sectionTitles.surroundingTitle,
+      intro: sectionTitles.surroundingIntro,
+      items: buildSurroundingPlaceItems(cityName, surroundingPlaceNames, slug),
     },
 
     processSteps: DEFAULT_PROCESS_STEPS(cityName),
 
     faq: {
-      eyebrow: "Veelgestelde vragen",
-      title: `FAQ — Pallets in ${cityName}`,
-      intro: `Antwoorden op veelgestelde vragen over onze diensten in ${cityName} en omgeving.`,
+      eyebrow: sectionTitles.faqEyebrow,
+      title: sectionTitles.faqTitle,
+      intro: sectionTitles.faqIntro,
       items: [
         { question: row.faq1Question.trim(), answer: row.faq1Answer.trim() },
         { question: row.faq2Question.trim(), answer: row.faq2Answer.trim() },
@@ -212,7 +227,7 @@ export function masterRowToCityContentMaster(
 
     imageFilename: row.imageFilename?.trim() || buildExpectedImageFilename(slug),
 
-    internalLinks: buildInternalLinks(provinceName, provinceSlug, slug, siblings),
+    internalLinks: buildInternalLinks(provinceName, provinceSlug, slug, nearbyLinks),
 
     openGraph: {
       title: `Pallets in ${cityName} | De Palletman`,
@@ -229,10 +244,15 @@ export function masterRowToCityContentMaster(
 export function masterRowsToCityContentMaster(
   rows: MasterCityRow[],
 ): CityContentMaster[] {
-  const siblings: SiblingCity[] = rows.map((row) => ({
-    name: row.city.trim(),
-    slug: row.slug.trim().toLowerCase(),
-  }));
+  const byProvince = new Map<string, string[]>();
+  for (const row of rows) {
+    const province = row.province.trim().toLowerCase();
+    const list = byProvince.get(province) ?? [];
+    list.push(row.city.trim());
+    byProvince.set(province, list);
+  }
 
-  return rows.map((row) => masterRowToCityContentMaster(row, siblings));
+  return rows.map((row) =>
+    masterRowToCityContentMaster(row, byProvince.get(row.province.trim().toLowerCase()) ?? []),
+  );
 }

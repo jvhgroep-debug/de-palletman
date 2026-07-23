@@ -39,6 +39,10 @@ export function validateMasterCsvRows(rows: MasterCityRow[]): MasterCsvValidatio
 
   const slugIndex = new Map<string, number>();
   const urlIndex = new Map<string, number>();
+  const heroTitleIndex = new Map<string, number>();
+  const metaTitleIndex = new Map<string, number>();
+  const metaDescriptionIndex = new Map<string, number>();
+  const canonicalIndex = new Map<string, number>();
 
   rows.forEach((row, index) => {
     const rowNumber = index + 2; // +1 header, +1 1-based
@@ -180,6 +184,30 @@ export function validateMasterCsvRows(rows: MasterCityRow[]): MasterCsvValidatio
         field: "heroTitle",
         message: "H1 (heroTitle) bevat de stadsnaam niet — controleer unieke lokale SEO.",
       });
+    }
+
+    const uniqueFields = [
+      { field: "heroTitle" as const, index: heroTitleIndex, label: "H1 (heroTitle)" },
+      { field: "metaTitle" as const, index: metaTitleIndex, label: "meta title" },
+      { field: "metaDescription" as const, index: metaDescriptionIndex, label: "meta description" },
+      { field: "canonical" as const, index: canonicalIndex, label: "canonical" },
+    ];
+
+    for (const { field, index, label } of uniqueFields) {
+      const value = row[field]?.trim();
+      if (!value) continue;
+
+      const previousRow = index.get(value);
+      if (previousRow !== undefined) {
+        errors.push({
+          row: rowNumber,
+          city: cityLabel,
+          field,
+          message: `Dubbele ${label} (eerder op regel ${previousRow}).`,
+        });
+      } else {
+        index.set(value, rowNumber);
+      }
     }
   });
 

@@ -31,6 +31,7 @@ export interface CityPageViewModel {
     secondaryHref?: string;
   };
   internalLinks: CityContentMaster["internalLinks"];
+  extended?: CityContentMaster["extended"];
 }
 
 const SECTION_IDS = {
@@ -44,13 +45,15 @@ const SECTION_IDS = {
 } as const;
 
 export function mapContentMasterToCityPage(page: CityContentMaster): CityPageViewModel {
-  const introText = [page.introduction.text, page.cityDescription, page.localEconomy]
-    .filter(Boolean)
-    .join("\n\n");
+  const isPremium = Boolean(page.extended);
 
-  const palletTypesIntro = [page.palletTypes.intro, page.qualityText, page.exportText]
-    .filter(Boolean)
-    .join(" ");
+  const introText = isPremium
+    ? [page.introduction.text, page.cityDescription, page.localEconomy].filter(Boolean).join("\n\n")
+    : [page.introduction.text, page.cityDescription, page.localEconomy].filter(Boolean).join("\n\n");
+
+  const palletTypesIntro = isPremium
+    ? page.palletTypes.intro
+    : [page.palletTypes.intro, page.qualityText, page.exportText].filter(Boolean).join(" ");
 
   return {
     path: page.path,
@@ -109,5 +112,6 @@ export function mapContentMasterToCityPage(page: CityContentMaster): CityPageVie
       secondaryHref: page.ctaSecondaryHref,
     },
     internalLinks: page.internalLinks,
+    extended: page.extended,
   };
 }
