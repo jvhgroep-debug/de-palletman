@@ -1,0 +1,109 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "./PageHero.astro";
+import PageIntro from "./PageIntro.astro";
+import PageContent from "./PageContent.astro";
+import PageFaq from "./PageFaq.astro";
+import PageCta from "./PageCta.astro";
+import type { ProvinceContentMaster } from "../content/provinceTypes";
+import { mapContentMasterToProvincePage } from "../content/mapToProvincePage";
+import { resolveProvincePageSeo } from "../content/buildProvinceSeo";
+
+interface Props {
+  page: ProvinceContentMaster;
+}
+
+const { page } = Astro.props;
+
+const content = mapContentMasterToProvincePage(page);
+const seo = resolveProvincePageSeo(page);
+---
+
+<PageLayout
+  title={seo.metaTitle}
+  description={seo.metaDescription}
+  canonical={seo.canonical}
+  ogTitle={seo.openGraph.title}
+  ogDescription={seo.openGraph.description}
+  ogImage={seo.openGraph.image}
+  schema={seo.schema}
+  currentPath={content.path}
+>
+  <PageHero
+    eyebrow={content.hero.eyebrow}
+    title={content.hero.title}
+    subtitle={content.hero.subtitle}
+    imageFilename={content.hero.imageFilename}
+  />
+
+  <PageIntro
+    eyebrow={content.intro.eyebrow}
+    title={content.intro.title}
+    text={content.intro.text}
+  />
+
+  <PageContent
+    id={content.whyPalletman.id}
+    eyebrow={content.whyPalletman.eyebrow}
+    title={content.whyPalletman.title}
+    intro={content.whyPalletman.intro}
+    columns={content.whyPalletman.columns ?? 2}
+    items={content.whyPalletman.items}
+  />
+
+  <PageContent
+    id={content.services.id}
+    eyebrow={content.services.eyebrow}
+    title={content.services.title}
+    intro={content.services.intro}
+    variant={content.services.variant ?? "white"}
+    columns={content.services.columns ?? 2}
+    items={content.services.items}
+  />
+
+  <PageContent
+    id={content.palletTypes.id}
+    eyebrow={content.palletTypes.eyebrow}
+    title={content.palletTypes.title}
+    intro={content.palletTypes.intro}
+    columns={content.palletTypes.columns ?? 3}
+    items={content.palletTypes.items}
+  />
+
+  <PageContent
+    id={content.pickupDelivery.id}
+    eyebrow={content.pickupDelivery.eyebrow}
+    title={content.pickupDelivery.title}
+    intro={content.pickupDelivery.intro}
+    variant={content.pickupDelivery.variant ?? "white"}
+    columns={content.pickupDelivery.columns ?? 2}
+    items={content.pickupDelivery.items}
+  />
+
+  <PageContent
+    id={content.workArea.id}
+    eyebrow={content.workArea.eyebrow}
+    title={content.workArea.title}
+    intro={content.workArea.intro}
+    columns={content.workArea.columns ?? 3}
+    items={content.workArea.items}
+  />
+
+  <PageFaq
+    id={content.faq.id}
+    eyebrow={content.faq.eyebrow}
+    title={content.faq.title}
+    intro={content.faq.intro}
+    variant={content.faq.variant ?? "white"}
+    items={content.faq.items}
+  />
+
+  <PageCta
+    title={content.cta.title}
+    text={content.cta.text}
+    primaryLabel={content.cta.primaryLabel}
+    primaryHref={content.cta.primaryHref}
+    secondaryLabel={content.cta.secondaryLabel}
+    secondaryHref={content.cta.secondaryHref}
+  />
+</PageLayout>

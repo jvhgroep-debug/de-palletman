@@ -1,77 +1,70 @@
-import type { ServicePageContent } from "../types/servicePage";
+import type { ServiceTemplatePage } from "../types";
 
-export const europallets: ServicePageContent = {
+export const europallets: ServiceTemplatePage = {
   path: "/europallets",
-  seo: {
-    title: "Europallets kopen | Gebruikte EUR-pallets | De Palletman",
-    description:
-      "Europallets kopen voor uw bedrijf? De Palletman levert gebruikte europallets in A- en B-kwaliteit. B2B-only, HT-gestempeld voor export en snelle levering.",
-  },
-  hero: {
-    eyebrow: "Europallets",
-    title: "Gebruikte europallets kopen",
-    subtitle:
-      "EUR-pallets in A- en B-kwaliteit — wij leveren uitsluitend aan bedrijven, met eigen transport en snelle levering.",
-    imageFilename: "europallets.webp",
-  },
+  template: "service",
+
+  title: "Europallets",
+  h1: "Gebruikte europallets kopen",
+  heroSubtitle:
+    "EUR-pallets in A- en B-kwaliteit — wij leveren uitsluitend aan bedrijven, met eigen transport en snelle levering.",
+  imageFilename: "europallets.webp",
+
   intro: {
     eyebrow: "Logistieke standaard",
     title: "Europallets voor transport, opslag en export",
     text: "Europallets zijn de meest gebruikte pallets in Europa. De Palletman levert gebruikte europallets uitsluitend aan bedrijven en koopt europallets in van bedrijven en particulieren. Ideaal voor logistiek, magazijnbeheer en internationaal transport.",
   },
-  sectionTypes: {
-    id: "pallettypes-heading",
-    eyebrow: "Toepassing",
-    title: "Waarvoor gebruikt u europallets?",
-    intro:
-      "Europallets zijn veelzijdig inzetbaar. De Palletman levert de juiste kwaliteit voor uw situatie.",
-    columns: 3,
-    items: [
-      {
-        title: "Logistiek & transport",
-        text: "Standaardformaat, wereldwijd herkenbaar. Geschikt voor nationale en internationale distributie.",
-      },
-      {
-        title: "Opslag & magazijn",
-        text: "Betrouwbare dragers voor stapelbare opslag. Beschikbaar in A- en B-kwaliteit.",
-      },
-      {
-        title: "Export",
-        text: "HT-gestempelde europallets leverbaar voor export buiten de EU volgens ISPM 15.",
-        href: "/pallets-kopen",
-        linkLabel: "Pallets kopen",
-      },
-    ],
+
+  seoText: {
+    types: {
+      eyebrow: "Toepassing",
+      title: "Waarvoor gebruikt u europallets?",
+      intro:
+        "Europallets zijn veelzijdig inzetbaar. De Palletman levert de juiste kwaliteit voor uw situatie.",
+      items: [
+        {
+          title: "Logistiek & transport",
+          text: "Standaardformaat, wereldwijd herkenbaar. Geschikt voor nationale en internationale distributie.",
+        },
+        {
+          title: "Opslag & magazijn",
+          text: "Betrouwbare dragers voor stapelbare opslag. Beschikbaar in A- en B-kwaliteit.",
+        },
+        {
+          title: "Export",
+          text: "HT-gestempelde europallets leverbaar voor export buiten de EU volgens ISPM 15.",
+          href: "/pallets-kopen",
+          linkLabel: "Pallets kopen",
+        },
+      ],
+    },
+    qualities: {
+      eyebrow: "Kwaliteit",
+      title: "Beschikbare kwaliteiten",
+      intro:
+        "Kies de conditie die past bij uw toepassing en budget. Altijd technisch bruikbaar en eerlijk omschreven.",
+      items: [
+        {
+          title: "A-kwaliteit (Eerste keus)",
+          text: "Lichte of blanke pallets met een nette uitstraling. Geschikt wanneer presentatie belangrijk is.",
+        },
+        {
+          title: "B-kwaliteit (Tweede keus)",
+          text: "Donkere gebruikte pallets met normale gebruikssporen, technisch volledig bruikbaar.",
+        },
+        {
+          title: "HT-gestempeld voor export",
+          text: "Voor export buiten de Europese Unie zijn HT-gestempelde pallets leverbaar volgens ISPM 15.",
+        },
+      ],
+    },
   },
-  sectionQualities: {
-    id: "kwaliteiten-heading",
-    eyebrow: "Kwaliteit",
-    title: "Beschikbare kwaliteiten",
-    intro:
-      "Kies de conditie die past bij uw toepassing en budget. Altijd technisch bruikbaar en eerlijk omschreven.",
-    variant: "white",
-    columns: 3,
-    items: [
-      {
-        title: "A-kwaliteit (Eerste keus)",
-        text: "Lichte of blanke pallets met een nette uitstraling. Geschikt wanneer presentatie belangrijk is.",
-      },
-      {
-        title: "B-kwaliteit (Tweede keus)",
-        text: "Donkere gebruikte pallets met normale gebruikssporen, technisch volledig bruikbaar.",
-      },
-      {
-        title: "HT-gestempeld voor export",
-        text: "Voor export buiten de Europese Unie zijn HT-gestempelde pallets leverbaar volgens ISPM 15.",
-      },
-    ],
-  },
-  sectionBenefits: {
-    id: "voordelen-heading",
+
+  usps: {
     eyebrow: "Waarom De Palletman",
     title: "Voordelen voor uw bedrijf",
     intro: "Waarom bedrijven kiezen voor De Palletman voor europallets.",
-    columns: 2,
     items: [
       {
         title: "Uitsluitend B2B",
@@ -93,12 +86,11 @@ export const europallets: ServicePageContent = {
       },
     ],
   },
+
   faq: {
-    id: "faq-heading",
     eyebrow: "Veelgestelde vragen",
     title: "Alles wat u wilt weten over europallets",
     intro: "Antwoorden op veelgestelde vragen over het kopen van gebruikte europallets.",
-    variant: "white",
     items: [
       {
         question: "Leveren jullie europallets aan particulieren?",
@@ -131,6 +123,7 @@ export const europallets: ServicePageContent = {
       },
     ],
   },
+
   cta: {
     title: "Offerte voor europallets?",
     text: "Vraag beschikbaarheid en prijs aan. Wij leveren snel en betrouwbaar aan bedrijven in ons werkgebied.",
@@ -138,5 +131,17 @@ export const europallets: ServicePageContent = {
     primaryHref: "/contact",
     secondaryLabel: "Pallets kopen",
     secondaryHref: "/pallets-kopen",
+  },
+
+  seo: {
+    metaTitle: "Europallets kopen | Gebruikte EUR-pallets | De Palletman",
+    metaDescription:
+      "Europallets kopen voor uw bedrijf? De Palletman levert gebruikte europallets in A- en B-kwaliteit. B2B-only, HT-gestempeld voor export en snelle levering.",
+    openGraph: {
+      title: "Europallets kopen | Gebruikte EUR-pallets | De Palletman",
+      description:
+        "Europallets kopen voor uw bedrijf? De Palletman levert gebruikte europallets in A- en B-kwaliteit. B2B-only, HT-gestempeld voor export en snelle levering.",
+    },
+    schema: "auto",
   },
 };

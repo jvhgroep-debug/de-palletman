@@ -5,27 +5,28 @@ import PageIntro from "./PageIntro.astro";
 import PageContent from "./PageContent.astro";
 import PageFaq from "./PageFaq.astro";
 import PageCta from "./PageCta.astro";
-import type { ServicePageContent } from "../types/servicePage";
-import { buildServicePageSchema, getServicePageUrl } from "../lib/servicePageSchema";
+import type { ContentMasterPage } from "../content/types";
+import { mapContentMasterToServicePage } from "../content/mapToServicePage";
+import { resolvePageSeo } from "../content/buildSeo";
 
 interface Props {
-  content: ServicePageContent;
+  page: ContentMasterPage;
 }
 
-const { content } = Astro.props;
+const { page } = Astro.props;
 
-const pageUrl = getServicePageUrl(content.path);
-const schema = buildServicePageSchema(content);
+const content = mapContentMasterToServicePage(page);
+const seo = resolvePageSeo(page);
 ---
 
 <PageLayout
-  title={content.seo.title}
-  description={content.seo.description}
-  canonical={pageUrl}
-  ogTitle={content.seo.title}
-  ogDescription={content.seo.description}
-  ogImage={`https://de-palletman.pages.dev/favicon.svg`}
-  schema={schema}
+  title={seo.metaTitle}
+  description={seo.metaDescription}
+  canonical={seo.canonical}
+  ogTitle={seo.openGraph.title}
+  ogDescription={seo.openGraph.description}
+  ogImage={seo.openGraph.image}
+  schema={seo.schema}
   currentPath={content.path}
 >
   <PageHero
