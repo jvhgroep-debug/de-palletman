@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Topbar from "../components/Topbar.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import UspBar from "../components/UspBar.astro";
+---
+
+<Layout>
+  <Topbar />
+  <Header currentPath="/" />
+  <main>
+    <Hero />
+    <UspBar />
+  </main>
+</Layout>

@@ -1,0 +1,447 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "../assets/images/hero-de-palletman.png";
+
+const features = [
+  {
+    label: "Directe betaling bij inkoop",
+    icon: "handshake",
+  },
+  {
+    label: "Grote partijen of kleine hoeveelheden",
+    icon: "users",
+  },
+  {
+    label: "Ophalen of laten bezorgen",
+    icon: "truck",
+  },
+  {
+    label: "Duurzaam hergebruik",
+    icon: "leaf",
+  },
+];
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__content">
+    <div class="hero__text">
+      <div class="hero__headings">
+        <p class="hero__eyebrow">Wij kopen en verkopen</p>
+        <h1 id="hero-heading" class="hero__title">Gebruikte pallets</h1>
+        <p class="hero__subtitle">Voor bedrijven en particulieren</p>
+      </div>
+
+      <p class="hero__description">
+        De Palletman is dé specialist in gebruikte pallets. Snel geregeld, eerlijke
+        prijzen en altijd een duurzame oplossing.
+      </p>
+
+      <ul class="hero__features" aria-label="Voordelen">
+        {
+          features.map((feature) => (
+            <li class="hero__feature">
+              <span class="hero__feature-icon" aria-hidden="true">
+                {feature.icon === "handshake" && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M11 12h2a2 2 0 100-4h-3c-.6 0-1.1.2-1.4.6L3 14"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7 18h1c.5 0 1-.2 1.4-.6L12 14"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8 12l-1-1a2 2 0 00-2.8 0l-1 1"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14 10l4-4a2 2 0 012.8 0l1 1"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M18 6l2 2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M3 21l3-3"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                )}
+                {feature.icon === "users" && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+                    <path
+                      d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                )}
+                {feature.icon === "truck" && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2" />
+                    <circle cx="18.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2" />
+                  </svg>
+                )}
+                {feature.icon === "leaf" && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                )}
+              </span>
+              <span>{feature.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="hero__actions">
+        <a href="/pallets-verkopen" class="hero__btn hero__btn--primary">
+          Pallets verkopen
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <a href="/pallets-kopen" class="hero__btn hero__btn--secondary">
+          Pallets kopen
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__media" aria-hidden="true">
+    <Image
+      src={heroImage}
+      alt=""
+      class="hero__image"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      widths={[480, 640, 768, 1024, 1280, 1536]}
+      sizes="(max-width: 767px) 100vw, 57vw"
+    />
+  </div>
+
+  <div class="hero__divider" aria-hidden="true">
+    <svg class="hero__divider-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
+      <line x1="43" y1="0" x2="37.2" y2="100" stroke="#f6b419" stroke-width="0.45"></line>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-navy);
+    overflow: hidden;
+  }
+
+  /* ── Mobile: gestapelde hero (< 768px) ── */
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    background-color: var(--color-navy);
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .hero__text {
+    max-width: 640px;
+  }
+
+  .hero__media {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .hero__media :global(picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 42% center;
+    border-radius: 0;
+  }
+
+  .hero__divider {
+    display: none;
+  }
+
+  .hero__headings {
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero__eyebrow {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    margin-bottom: var(--space-xs);
+  }
+
+  .hero__title {
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    line-height: 1.05;
+    color: var(--color-gold);
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero__subtitle {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+  }
+
+  .hero__description {
+    font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-xl);
+    max-width: 520px;
+  }
+
+  .hero__features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-white);
+    line-height: 1.4;
+  }
+
+  .hero__feature-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(246, 180, 25, 0.15);
+    color: var(--color-gold);
+    border-radius: var(--radius-sm);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .hero__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast), transform var(--transition-fast),
+      border-color var(--transition-fast), color var(--transition-fast);
+    text-align: center;
+  }
+
+  .hero__btn--primary {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  .hero__btn--primary:hover {
+    background-color: var(--color-gold-hover);
+    transform: translateY(-2px);
+  }
+
+  .hero__btn--secondary {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-blue);
+  }
+
+  .hero__btn--secondary:hover {
+    background-color: var(--color-blue);
+    color: var(--color-navy);
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 640px) {
+    .hero__features {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md) var(--space-lg);
+    }
+
+    .hero__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .hero__btn {
+      flex: 1 1 auto;
+      min-width: 200px;
+    }
+  }
+
+  /* ── Tablet & desktop: geïntegreerde twee-koloms hero (≥ 768px) ── */
+  @media (min-width: 768px) {
+    .hero {
+      display: block;
+      height: 580px;
+    }
+
+    .hero__content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 43%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: var(--space-2xl) var(--space-xl);
+      background-color: var(--color-navy);
+      clip-path: polygon(0 0, 100% 0, 86.5% 100%, 0 100%);
+    }
+
+    .hero__media {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 43%;
+      width: auto;
+      height: auto;
+      z-index: 1;
+    }
+
+    .hero__divider {
+      display: block;
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .hero__divider-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero__text {
+      position: relative;
+      z-index: 2;
+      max-width: 100%;
+      padding-right: var(--space-lg);
+    }
+
+    .hero__image {
+      object-fit: cover;
+      object-position: 42% center;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      height: 600px;
+    }
+
+    .hero__content {
+      padding: var(--space-3xl) var(--space-2xl);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero {
+      height: 620px;
+    }
+  }
+</style>

@@ -1,0 +1,5 @@
+# Cloudflare Pages / Workers — optional local wrangler config
+name = "de-palletman"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "./dist"

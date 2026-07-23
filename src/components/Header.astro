@@ -1,0 +1,188 @@
+---
+import logo from "../assets/images/palletman-logo.png";
+import Navigation from "./Navigation.astro";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "/" } = Astro.props;
+---
+
+<header class="header">
+  <div class="header__inner container">
+    <a href="/" class="header__logo" aria-label="De Palletman – naar homepage">
+      <img
+        src={logo.src}
+        width={logo.width}
+        height={logo.height}
+        alt="De Palletman – De man achter elke pallet"
+        class="header__logo-img"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+
+    <Navigation currentPath={currentPath} />
+
+    <div class="header__actions">
+      <a href="/contact" class="header__cta">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
+        <span class="header__cta-text">Vraag een prijs aan</span>
+      </a>
+
+      <a href="/winkelwagen" class="header__cart" aria-label="Winkelwagen, 0 items">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path d="M3 6h18" stroke="currentColor" stroke-width="2" />
+          <path
+            d="M16 10a4 4 0 01-8 0"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="header__cart-badge" aria-hidden="true">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    min-height: var(--header-height);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    min-height: var(--header-height);
+    padding-block: var(--space-sm);
+    position: relative;
+  }
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 201;
+  }
+
+  .header__logo-img {
+    width: auto;
+    height: 64px;
+    object-fit: contain;
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    z-index: 201;
+  }
+
+  .header__cta {
+    display: none;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+    font-weight: 700;
+    font-size: 0.875rem;
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .header__cta:hover {
+    background-color: var(--color-gold-hover);
+    transform: translateY(-1px);
+  }
+
+  .header__cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .header__cart:hover {
+    background-color: var(--color-navy-dark);
+  }
+
+  .header__cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding-inline: 5px;
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-white);
+  }
+
+  @media (min-width: 768px) {
+    .header__logo-img {
+      height: 72px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .header__inner {
+      gap: var(--space-lg);
+    }
+
+    .header :global(.navigation) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .header__cta {
+      display: flex;
+    }
+
+    .header__logo-img {
+      height: 80px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .header__cta-text {
+      display: inline;
+    }
+  }
+</style>
