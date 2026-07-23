@@ -6,13 +6,34 @@ interface FaqItem {
 
 interface Props {
   items: FaqItem[];
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  id?: string;
+  variant?: "gray" | "white";
 }
 
-const { items } = Astro.props;
+const { items, eyebrow, title, intro, id, variant = "gray" } = Astro.props;
 ---
 
-<section class="page-faq" aria-label="Veelgestelde vragen">
+<section
+  class:list={["page-faq", variant === "white" && "page-faq--white"]}
+  aria-labelledby={id}
+>
   <div class="page-faq__inner container">
+    {
+      (eyebrow || title || intro) && (
+        <header class="page-faq__header">
+          {eyebrow && <p class="page-faq__eyebrow">{eyebrow}</p>}
+          {title && (
+            <h2 id={id} class="page-faq__title">
+              {title}
+            </h2>
+          )}
+          {intro && <p class="page-faq__intro">{intro}</p>}
+        </header>
+      )
+    }
     <dl class="page-faq__list">
       {
         items.map((item) => (
@@ -32,6 +53,38 @@ const { items } = Astro.props;
     background-color: var(--color-gray-50);
   }
 
+  .page-faq--white {
+    background-color: var(--color-white);
+  }
+
+  .page-faq__header {
+    max-width: 720px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .page-faq__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-faq__title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    line-height: 1.25;
+    margin-bottom: var(--space-md);
+  }
+
+  .page-faq__intro {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-gray-600);
+  }
+
   .page-faq__list {
     display: flex;
     flex-direction: column;
@@ -45,6 +98,10 @@ const { items } = Astro.props;
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-lg);
     border-left: 4px solid var(--color-gold);
+  }
+
+  .page-faq--white .page-faq__item {
+    background-color: var(--color-gray-50);
   }
 
   .page-faq__question {

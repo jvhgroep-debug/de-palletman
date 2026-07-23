@@ -9,12 +9,26 @@ interface Props {
   title?: string;
   description?: string;
   currentPath: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  schema?: Record<string, unknown>;
 }
 
-const { title, description, currentPath } = Astro.props;
+const { title, description, currentPath, canonical, ogTitle, ogDescription, ogImage, schema } =
+  Astro.props;
 ---
 
-<Layout title={title} description={description}>
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogImage={ogImage}
+  schema={schema}
+>
   <Topbar />
   <Header currentPath={currentPath} />
   <main>

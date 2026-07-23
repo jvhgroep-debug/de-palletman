@@ -2,24 +2,71 @@
 interface ContentItem {
   title: string;
   text: string;
+  href?: string;
+  linkLabel?: string;
 }
 
 interface Props {
   items: ContentItem[];
   columns?: 2 | 3;
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  id?: string;
+  variant?: "gray" | "white";
 }
 
-const { items, columns = 2 } = Astro.props;
+const {
+  items,
+  columns = 2,
+  eyebrow,
+  title,
+  intro,
+  id,
+  variant = "gray",
+} = Astro.props;
 ---
 
-<section class="page-content" aria-label="Pagina-inhoud">
+<section
+  class:list={["page-content", variant === "white" && "page-content--white"]}
+  aria-labelledby={id}
+>
   <div class="page-content__inner container">
+    {
+      (eyebrow || title || intro) && (
+        <header class="page-content__header">
+          {eyebrow && <p class="page-content__eyebrow">{eyebrow}</p>}
+          {title && (
+            <h2 id={id} class="page-content__title">
+              {title}
+            </h2>
+          )}
+          {intro && <p class="page-content__intro">{intro}</p>}
+        </header>
+      )
+    }
     <ul class="page-content__grid" data-columns={columns}>
       {
         items.map((item) => (
           <li class="page-content__item">
             <h3 class="page-content__item-title">{item.title}</h3>
             <p class="page-content__item-text">{item.text}</p>
+            {
+              item.href && item.linkLabel && (
+                <a href={item.href} class="page-content__link">
+                  {item.linkLabel}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              )
+            }
           </li>
         ))
       }
@@ -33,6 +80,38 @@ const { items, columns = 2 } = Astro.props;
     background-color: var(--color-gray-50);
   }
 
+  .page-content--white {
+    background-color: var(--color-white);
+  }
+
+  .page-content__header {
+    max-width: 720px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .page-content__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-content__title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    line-height: 1.25;
+    margin-bottom: var(--space-md);
+  }
+
+  .page-content__intro {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-gray-600);
+  }
+
   .page-content__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -40,11 +119,17 @@ const { items, columns = 2 } = Astro.props;
   }
 
   .page-content__item {
+    display: flex;
+    flex-direction: column;
     padding: var(--space-xl);
     background-color: var(--color-white);
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
+  }
+
+  .page-content--white .page-content__item {
+    background-color: var(--color-gray-50);
   }
 
   .page-content__item-title {
@@ -67,9 +152,31 @@ const { items, columns = 2 } = Astro.props;
   }
 
   .page-content__item-text {
+    flex: 1;
     font-size: 0.9375rem;
     line-height: 1.7;
     color: var(--color-gray-600);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-content__item-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .page-content__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-top: auto;
+    transition: color var(--transition-fast), gap var(--transition-fast);
+  }
+
+  .page-content__link:hover {
+    color: var(--color-blue);
+    gap: var(--space-md);
   }
 
   @media (min-width: 640px) {
