@@ -1,5 +1,5 @@
 ---
-import HeroImage from "./HeroImage.astro";
+import CtaBannerImage from "./CtaBannerImage.astro";
 
 interface Props {
   title: string;
@@ -8,8 +8,6 @@ interface Props {
   primaryHref: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  imageFilename: string;
-  imageAlt: string;
 }
 
 const {
@@ -19,8 +17,6 @@ const {
   primaryHref,
   secondaryLabel,
   secondaryHref,
-  imageFilename,
-  imageAlt,
 } = Astro.props;
 ---
 
@@ -43,7 +39,7 @@ const {
       </div>
     </div>
     <div class="service-cta-banner__media">
-      <HeroImage filename={imageFilename} alt={imageAlt} aspectRatio="5 / 4" />
+      <CtaBannerImage />
     </div>
   </div>
 </section>
@@ -118,6 +114,12 @@ const {
     transform: translateY(-2px);
   }
 
+  .service-cta-banner__media {
+    width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
   @media (min-width: 768px) {
     .service-cta-banner__inner {
       grid-template-columns: 1fr 1fr;
@@ -126,6 +128,11 @@ const {
     .service-cta-banner__actions {
       flex-direction: row;
       flex-wrap: wrap;
+    }
+
+    .service-cta-banner__media {
+      max-width: none;
+      margin-inline: 0;
     }
   }
 </style>

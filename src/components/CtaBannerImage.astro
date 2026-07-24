@@ -1,0 +1,50 @@
+---
+import { CTA_IMAGE_ALT, CTA_IMAGE_PATH } from "../content/shared/ctaImage";
+
+interface Props {
+  alt?: string;
+  aspectRatio?: string;
+  loading?: "lazy" | "eager";
+  class?: string;
+}
+
+const {
+  alt = CTA_IMAGE_ALT,
+  aspectRatio = "5 / 4",
+  loading = "lazy",
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={["cta-banner-image", className]}
+  style={`--cta-image-ratio: ${aspectRatio}`}
+>
+  <img
+    src={CTA_IMAGE_PATH}
+    alt={alt}
+    class="cta-banner-image__img"
+    width="960"
+    height="768"
+    loading={loading}
+    decoding="async"
+  />
+</div>
+
+<style>
+  .cta-banner-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--cta-image-ratio);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .cta-banner-image__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+</style>
