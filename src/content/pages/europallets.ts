@@ -12,6 +12,16 @@ import {
   serviceTrust,
   standardInternalLinks,
 } from "./shared/serviceDefaults";
+import {
+  EUROPALLET_A_IMAGE_ALT,
+  EUROPALLET_A_QUALITY_TEXT,
+  EUROPALLET_A_QUALITY_TITLE,
+  EUROPALLET_B_IMAGE_ALT,
+  EUROPALLET_B_QUALITY_TEXT,
+  EUROPALLET_B_QUALITY_TITLE,
+  europalletQualityDifferenceAnswer,
+  europalletQualitySectionItems,
+} from "../shared/europalletQuality";
 
 export const europallets: ServiceTemplatePage = {
   path: "/europallets",
@@ -63,19 +73,19 @@ export const europallets: ServiceTemplatePage = {
       eyebrow: "Europallets",
       title: "Europallet-kwaliteiten uitgelegd",
       intro:
-        "Het verschil tussen A-kwaliteit (1e keus) en B-kwaliteit (2e keus) zit in uitstraling en slijtage — niet in veiligheid. Beide zijn technisch bruikbaar.",
+        "Het verschil tussen A-kwaliteit (1e keus) en B-kwaliteit (2e keus) zit uitsluitend in uitstraling, gebruikssporen en kleur — beide kwaliteiten zijn technisch volledig inzetbaar.",
       imageCards: [
         {
           filename: "kwaliteit-a.webp",
-          alt: "Europallets A-kwaliteit — 1e keus, lichte en blanke pallets",
-          title: "A-kwaliteit — 1e keus",
-          text: "Lichte of blanke pallets met nette uitstraling en minimale slijtage. Ideaal voor retail, showrooms en klantgerichte distributie.",
+          alt: EUROPALLET_A_IMAGE_ALT,
+          title: EUROPALLET_A_QUALITY_TITLE,
+          text: EUROPALLET_A_QUALITY_TEXT,
         },
         {
           filename: "kwaliteit-b.webp",
-          alt: "Europallets B-kwaliteit — 2e keus, donkere gebruikte pallets",
-          title: "B-kwaliteit — 2e keus",
-          text: "Donkere gebruikte pallets met normale slijtage. Technisch volledig bruikbaar — voordeliger voor intern magazijn en productie.",
+          alt: EUROPALLET_B_IMAGE_ALT,
+          title: EUROPALLET_B_QUALITY_TITLE,
+          text: EUROPALLET_B_QUALITY_TEXT,
         },
       ],
     },
@@ -91,7 +101,7 @@ export const europallets: ServiceTemplatePage = {
         { title: "Hoogte", text: "Circa 144 mm — past onder roldeuren en heftrucktoepassingen." },
         { title: "Draagvermogen", text: "Doorgaans 1.000–1.500 kg dynamisch bij technisch goede conditie." },
         { title: "HT-gestempeld", text: "Voor export buiten de EU: Heat Treatment volgens ISPM 15. Stempel op het hout." },
-        { title: "Inspectie", text: "Elke partij visueel gecontroleerd — losse planken en breuken uitgesloten." },
+        { title: "Inspectie", text: "Elke partij wordt visueel gecontroleerd vóór levering." },
       ],
     },
 
@@ -202,9 +212,8 @@ export const europallets: ServiceTemplatePage = {
       title: "Kwaliteiten europallets",
       intro: "Gebruikte europallets in duidelijke kwaliteitsklassen — eerlijk omschreven.",
       items: [
-        { title: "A-kwaliteit — 1e keus", text: "Lichte of blanke pallets, nette uitstraling, minimale slijtage." },
-        { title: "B-kwaliteit — 2e keus", text: "Donkere gebruikte pallets, normale slijtage, technisch bruikbaar." },
-        { title: "Verschil 1e en 2e keus", text: "Uitstraling en prijs — niet veiligheid. Beide functioneel in orde." },
+        ...europalletQualitySectionItems(),
+        { title: "Verschil 1e en 2e keus", text: "Uitstraling, gebruikssporen en kleur — beide kwaliteiten zijn technisch volledig inzetbaar." },
         { title: "HT-gestempeld export buiten EU", text: "Verplicht volgens ISPM 15. Op aanvraag." },
         { title: "Kwaliteitscontrole", text: "Visuele inspectie voor levering." },
         { title: "Eerlijke omschrijving", text: "Conditie staat helder in de offerte." },
@@ -234,7 +243,7 @@ export const europallets: ServiceTemplatePage = {
     title: "FAQ — Europallets",
     intro: "Antwoorden op veelgestelde vragen over europallets.",
     items: [
-      { question: "Wat is het verschil tussen A-kwaliteit en B-kwaliteit?", answer: "A-kwaliteit (1e keus) zijn lichte, blanke pallets. B-kwaliteit (2e keus) zijn donkere gebruikte pallets — technisch bruikbaar, voordeliger." },
+      { question: "Wat is het verschil tussen A-kwaliteit en B-kwaliteit?", answer: europalletQualityDifferenceAnswer() },
       { question: "Leveren jullie HT-gestempelde europallets voor export buiten de EU?", answer: "Ja, op aanvraag volgens ISPM 15." },
       { question: "Wat zijn de afmetingen van een europallet?", answer: "800 × 1200 mm, hoogte circa 144 mm." },
       { question: "Leveren jullie aan particulieren?", answer: "Nee. Uitsluitend B2B-levering aan bedrijven." },

@@ -1,6 +1,14 @@
 import { defineCityPage } from "../cityTypes";
 import type { CityPageExtended } from "../cityTypes";
 import { getCanonicalUrl } from "../siteConfig";
+import {
+  EUROPALLET_A_QUALITY_TEXT,
+  EUROPALLET_A_QUALITY_TITLE,
+  EUROPALLET_B_QUALITY_TEXT,
+  EUROPALLET_B_QUALITY_TITLE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+  europalletQualityDifferenceAnswer,
+} from "../shared/europalletQuality";
 import { cityQuoteForm } from "./shared/cityQuoteForm";
 
 const cityName = "Tilburg";
@@ -51,14 +59,14 @@ const extended: CityPageExtended = {
     columns: 2,
     items: [
       {
-        title: "A-kwaliteit — 1e keus",
-        text: "Lichte of blanke europallets voor nette opslag en presentatie. Populair bij groothandels en distributiebedrijven in Tilburg.",
+        title: EUROPALLET_A_QUALITY_TITLE,
+        text: EUROPALLET_A_QUALITY_TEXT,
         href: "/europallets",
         linkLabel: "Meer over europallets",
       },
       {
-        title: "B-kwaliteit — 2e keus",
-        text: "Donkere gebruikte europallets — technisch bruikbaar en voordeliger. Geschikt voor intern transport op terreinen als Kraaiven.",
+        title: EUROPALLET_B_QUALITY_TITLE,
+        text: EUROPALLET_B_QUALITY_TEXT,
         href: "/europallets",
         linkLabel: "Kwaliteitsverschil bekijken",
       },
@@ -296,8 +304,7 @@ export const tilburg = defineCityPage({
     ],
   },
 
-  qualityText:
-    "A-kwaliteit (1e keus): lichte of blanke europallets. B-kwaliteit (2e keus): donkere gebruikte pallets, technisch bruikbaar en voordeliger voor logistiek in Tilburg.",
+  qualityText: EUROPALLET_QUALITY_COMBINED_TEXT,
 
   exportText:
     "HT-gestempelde europallets volgens ISPM 15 zijn beschikbaar voor export buiten de EU. Op aanvraag voor bedrijven in Tilburg en Midden-Brabant.",
@@ -403,7 +410,7 @@ export const tilburg = defineCityPage({
       {
         question: "Wat is het verschil tussen 1e en 2e keus europallets?",
         answer:
-          "1e keus (A-kwaliteit) zijn lichte of blanke pallets. 2e keus (B-kwaliteit) zijn donkere gebruikte pallets — technisch bruikbaar en voordeliger.",
+          europalletQualityDifferenceAnswer("Tilburg"),
       },
       {
         question: "Kopen jullie pallets in van particulieren in Tilburg?",

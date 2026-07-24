@@ -2,7 +2,7 @@ import {
   MASTER_CSV_COLUMNS,
   type MasterCsvColumn,
 } from "./columns.ts";
-import { parseCsvLine } from "./csvUtils.ts";
+import { parseCsvRecords } from "./csvUtils.ts";
 import type { MasterCityRow, ParsedMasterCsv } from "./types.ts";
 
 function normalizeHeader(header: string): string {
@@ -34,20 +34,19 @@ function assertValidHeaders(headers: string[]): MasterCsvColumn[] {
  * Vereist exacte kopregel volgens MASTER_CSV_COLUMNS.
  */
 export function parseMasterCsv(csvText: string): ParsedMasterCsv {
-  const lines = csvText
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter((line) => line.length > 0);
+  const records = parseCsvRecords(csvText.trim()).filter((record) =>
+    record.some((cell) => cell.trim().length > 0),
+  );
 
-  if (lines.length === 0) {
+  if (records.length === 0) {
     return { headers: MASTER_CSV_COLUMNS, rows: [] };
   }
 
-  const headers = assertValidHeaders(parseCsvLine(lines[0]));
+  const headers = assertValidHeaders(records[0]);
   const rows: MasterCityRow[] = [];
 
-  for (let i = 1; i < lines.length; i += 1) {
-    const cells = parseCsvLine(lines[i]);
+  for (let i = 1; i < records.length; i += 1) {
+    const cells = records[i];
 
     if (cells.length !== headers.length) {
       throw new Error(

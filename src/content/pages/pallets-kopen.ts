@@ -3,6 +3,16 @@
  * Definitieve Master Service Page voor alle dienstenpagina's.
  */
 import type { ServiceTemplatePage } from "../types";
+import {
+  EUROPALLET_A_IMAGE_ALT,
+  EUROPALLET_A_QUALITY_TEXT,
+  EUROPALLET_A_QUALITY_TITLE,
+  EUROPALLET_B_IMAGE_ALT,
+  EUROPALLET_B_QUALITY_TEXT,
+  EUROPALLET_B_QUALITY_TITLE,
+  europalletQualityDifferenceAnswer,
+  europalletQualitySectionItems,
+} from "../shared/europalletQuality";
 
 export const palletsKopen: ServiceTemplatePage = {
   path: "/pallets-kopen",
@@ -104,19 +114,19 @@ export const palletsKopen: ServiceTemplatePage = {
       eyebrow: "Europallets",
       title: "Europallet-kwaliteiten uitgelegd",
       intro:
-        "Bij europallets kiest u de conditie die past bij uw toepassing en budget. Hieronder ziet u het verschil tussen A-kwaliteit (1e keus) en B-kwaliteit (2e keus). Beide zijn technisch bruikbaar — het verschil zit in uitstraling en slijtage.",
+        "Bij europallets kiest u de conditie die past bij uw toepassing en budget. Hieronder ziet u het verschil tussen A-kwaliteit (1e keus) en B-kwaliteit (2e keus). Beide zijn technisch volledig inzetbaar — het verschil zit uitsluitend in uitstraling, gebruikssporen en kleur.",
       imageCards: [
         {
           filename: "kwaliteit-a.webp",
-          alt: "Europallets A-kwaliteit — 1e keus, lichte en blanke pallets",
-          title: "A-kwaliteit — 1e keus",
-          text: "Lichte of blanke pallets met een nette, verzorgde uitstraling. Minimale gebruikssporen, geen losse of gebroken planken. Ideaal wanneer presentatie telt: showrooms, retail-distributie of klantgerichte opslag.",
+          alt: EUROPALLET_A_IMAGE_ALT,
+          title: EUROPALLET_A_QUALITY_TITLE,
+          text: EUROPALLET_A_QUALITY_TEXT,
         },
         {
           filename: "kwaliteit-b.webp",
-          alt: "Europallets B-kwaliteit — 2e keus, donkere gebruikte pallets",
-          title: "B-kwaliteit — 2e keus",
-          text: "Donkere, gebruikte pallets met normale slijtage en gebruikssporen. Technisch volledig bruikbaar en veilig belastbaar. De voordelige keuze voor intern magazijn, productie en logistiek.",
+          alt: EUROPALLET_B_IMAGE_ALT,
+          title: EUROPALLET_B_QUALITY_TITLE,
+          text: EUROPALLET_B_QUALITY_TEXT,
         },
       ],
     },
@@ -150,7 +160,7 @@ export const palletsKopen: ServiceTemplatePage = {
         },
         {
           title: "Visuele inspectie",
-          text: "Elke partij wordt beoordeeld op losse planken, breuken en vervorming vóór levering.",
+          text: "Elke partij wordt visueel gecontroleerd vóór levering.",
         },
       ],
     },
@@ -368,17 +378,10 @@ export const palletsKopen: ServiceTemplatePage = {
       intro:
         "Bij europallets kiest u de conditie die past bij uw toepassing. Wij omschrijven elke kwaliteit helder — altijd technisch bruikbaar.",
       items: [
-        {
-          title: "A-kwaliteit — 1e keus",
-          text: "Lichte of blanke pallets met nette uitstraling. Minimale slijtage — ideaal wanneer presentatie telt.",
-        },
-        {
-          title: "B-kwaliteit — 2e keus",
-          text: "Donkere gebruikte pallets met normale slijtage. Technisch volledig bruikbaar — voordeliger geprijsd.",
-        },
+        ...europalletQualitySectionItems(),
         {
           title: "Verschil 1e en 2e keus",
-          text: "Het verschil zit in uitstraling en slijtage, niet in veiligheid. Beide kwaliteiten zijn functioneel in orde.",
+          text: "Het verschil zit uitsluitend in uitstraling, gebruikssporen en kleur — beide kwaliteiten zijn technisch volledig inzetbaar.",
         },
         {
           title: "HT-gestempeld voor export buiten de EU",
@@ -386,7 +389,7 @@ export const palletsKopen: ServiceTemplatePage = {
         },
         {
           title: "Kwaliteitscontrole",
-          text: "Elke partij wordt visueel gecontroleerd. Losse planken, breuken of vervorming worden uitgesloten.",
+          text: "Elke partij wordt visueel gecontroleerd vóór levering.",
         },
         {
           title: "Eerlijke omschrijving",
@@ -449,8 +452,7 @@ export const palletsKopen: ServiceTemplatePage = {
       },
       {
         question: "Wat is het verschil tussen A-kwaliteit en B-kwaliteit?",
-        answer:
-          "A-kwaliteit (1e keus) zijn lichte of blanke pallets met nette uitstraling. B-kwaliteit (2e keus) zijn donkere gebruikte pallets met normale slijtage — technisch volledig bruikbaar, voordeliger geprijsd.",
+        answer: europalletQualityDifferenceAnswer(),
       },
       {
         question: "Wat is het minimale bestelbedrag of aantal?",

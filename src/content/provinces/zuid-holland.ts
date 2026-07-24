@@ -1,4 +1,9 @@
 import type { ProvinceTemplatePage } from "../provinceTypes";
+import {
+  EUROPALLET_HT_EXPORT_NOTE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+  europalletQualityDifferenceAnswer,
+} from "../shared/europalletQuality";
 
 export const zuidHolland: ProvinceTemplatePage = {
   path: "/zuid-holland",
@@ -67,7 +72,7 @@ export const zuidHolland: ProvinceTemplatePage = {
       },
       {
         title: "Europallets",
-        text: "A-kwaliteit (lichte of blanke pallets) en B-kwaliteit (donkere gebruikte pallets). HT-gestempeld voor export buiten de EU volgens ISPM 15.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Europallets",
       },
@@ -170,7 +175,7 @@ export const zuidHolland: ProvinceTemplatePage = {
       {
         question: "Welke kwaliteiten europallets leveren jullie?",
         answer:
-          "A-kwaliteit (eerste keus): lichte of blanke pallets. B-kwaliteit (tweede keus): donkere gebruikte pallets die technisch volledig bruikbaar zijn. Voor export buiten de EU leveren wij HT-gestempelde pallets volgens ISPM 15.",
+          `${europalletQualityDifferenceAnswer("Zuid-Holland")} Voor export buiten de EU leveren wij HT-gestempelde pallets volgens ISPM 15.`,
       },
       {
         question: "Kunnen jullie ook kleine partijen bezorgen?",

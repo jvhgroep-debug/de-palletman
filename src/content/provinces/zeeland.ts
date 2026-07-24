@@ -1,4 +1,9 @@
 import type { ProvinceTemplatePage } from "../provinceTypes";
+import {
+  EUROPALLET_HT_EXPORT_NOTE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+  europalletQualityDifferenceAnswer,
+} from "../shared/europalletQuality";
 
 export const zeeland: ProvinceTemplatePage = {
   path: "/zeeland",
@@ -67,7 +72,7 @@ export const zeeland: ProvinceTemplatePage = {
       },
       {
         title: "Europallets",
-        text: "A-kwaliteit (lichte of blanke) en B-kwaliteit (donkere gebruikte pallets). HT-gestempeld voor export buiten de EU.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Europallets",
       },
@@ -88,7 +93,7 @@ export const zeeland: ProvinceTemplatePage = {
     items: [
       {
         title: "Europallets",
-        text: "Standaard voor opslag en distributie. Keuze uit A-kwaliteit (eerste keus) of B-kwaliteit (tweede keus), plus HT-gestempeld voor internationale zendingen.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Meer over Europallets",
       },
@@ -180,7 +185,7 @@ export const zeeland: ProvinceTemplatePage = {
       {
         question: "Wat is het verschil tussen A- en B-kwaliteit?",
         answer:
-          "A-kwaliteit (eerste keus) zijn lichte of blanke pallets met een nette uitstraling. B-kwaliteit (tweede keus) zijn donkere gebruikte pallets met normale gebruikssporen, technisch volledig bruikbaar.",
+          europalletQualityDifferenceAnswer("Zeeland"),
       },
     ],
   },

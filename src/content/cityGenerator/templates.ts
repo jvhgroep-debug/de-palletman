@@ -1,5 +1,10 @@
 import type { CityInputRecord } from "./types";
 import { formatList } from "./utils";
+import {
+  EUROPALLET_HT_EXPORT_NOTE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+  europalletQualityDifferenceAnswer,
+} from "../shared/europalletQuality";
 
 interface TemplateContext {
   cityName: string;
@@ -110,8 +115,7 @@ export function buildPalletTypes(ctx: TemplateContext) {
   };
 }
 
-export const QUALITY_TEXT =
-  "Europallets zijn beschikbaar als A-kwaliteit (eerste keus): lichte of blanke pallets met een nette uitstraling. Of als B-kwaliteit (tweede keus): donkere gebruikte pallets met normale gebruikssporen, technisch volledig bruikbaar en voordeliger.";
+export const QUALITY_TEXT = EUROPALLET_QUALITY_COMBINED_TEXT;
 
 export const EXPORT_TEXT =
   "Voor export buiten de Europese Unie kunnen HT-gestempelde pallets volgens ISPM 15 nodig zijn. Vraag ons naar beschikbaarheid en planning voor uw zending.";
@@ -232,8 +236,7 @@ export function buildFaq(ctx: TemplateContext) {
     },
     {
       question: "Welke kwaliteit europallets kan ik kopen?",
-      answer:
-        "A-kwaliteit (eerste keus): lichte of blanke pallets. B-kwaliteit (tweede keus): donkere gebruikte pallets, technisch bruikbaar. Voor export buiten de EU: HT-gestempeld volgens ISPM 15.",
+      answer: `${europalletQualityDifferenceAnswer(ctx.cityName)} ${EUROPALLET_HT_EXPORT_NOTE}`,
     },
     {
       question: `Halen jullie ook kleine partijen op in ${ctx.cityName}?`,

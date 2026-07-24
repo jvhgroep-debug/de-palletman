@@ -1,6 +1,15 @@
 import { defineCityPage } from "../cityTypes";
 import type { CityPageExtended } from "../cityTypes";
 import { getCanonicalUrl } from "../siteConfig";
+import {
+  EUROPALLET_A_QUALITY_TEXT,
+  EUROPALLET_A_QUALITY_TITLE,
+  EUROPALLET_B_QUALITY_TEXT,
+  EUROPALLET_B_QUALITY_TITLE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+  europalletQualityDifferenceAnswer,
+  europalletQualitySectionItems,
+} from "../shared/europalletQuality";
 import { cityQuoteForm } from "./shared/cityQuoteForm";
 
 const cityName = "Breda";
@@ -51,14 +60,14 @@ const extended: CityPageExtended = {
     columns: 2,
     items: [
       {
-        title: "A-kwaliteit — 1e keus",
-        text: "Lichte of blanke europallets met een nette uitstraling. Ideaal voor retail-distributie op Hazeldonk, nette opslag bij groothandels en presentatie aan klanten in West-Brabant.",
+        title: EUROPALLET_A_QUALITY_TITLE,
+        text: EUROPALLET_A_QUALITY_TEXT,
         href: "/europallets",
         linkLabel: "Meer over europallets",
       },
       {
-        title: "B-kwaliteit — 2e keus",
-        text: "Donkere gebruikte europallets met normale slijtage. Technisch volledig bruikbaar en voordeliger — perfect voor intern transport, opslag op Minervum en logistieke processen waar uitstraling minder telt.",
+        title: EUROPALLET_B_QUALITY_TITLE,
+        text: EUROPALLET_B_QUALITY_TEXT,
         href: "/europallets",
         linkLabel: "Kwaliteitsverschil bekijken",
       },
@@ -375,17 +384,10 @@ const extended: CityPageExtended = {
     eyebrow: "Kwaliteit",
     title: "Kwaliteiten — het verschil uitgelegd",
     intro:
-      "Bij europallets onderscheiden wij A-kwaliteit (1e keus) en B-kwaliteit (2e keus). Beide zijn technisch bruikbaar — het verschil zit in uitstraling, prijs en toepassing.",
+      "Bij europallets onderscheiden wij A-kwaliteit (1e keus) en B-kwaliteit (2e keus). Beide zijn technisch volledig inzetbaar — het verschil zit uitsluitend in uitstraling, gebruikssporen en kleur.",
     columns: 2,
     items: [
-      {
-        title: "A-kwaliteit — 1e keus",
-        text: "Lichte of blanke europallets met een nette uitstraling. Minimale slijtage, geen scheuren of losse delen. Ideaal voor retail-distributie, nette opslag en situaties waar presentatie telt — zoals op Hazeldonk bij klanten die pallets zien.",
-      },
-      {
-        title: "B-kwaliteit — 2e keus",
-        text: "Donkere, gebruikte europallets met normale slijtage en gebruikssporen. Technisch volledig bruikbaar — stabiel, dragend en geschikt voor logistiek. Voordeliger dan A-kwaliteit. Perfect voor intern transport, opslag achter de schermen en processen waar uitstraling niet uitmaakt.",
-      },
+      ...europalletQualitySectionItems(),
       {
         title: "Wanneer kiest u A-kwaliteit?",
         text: "Kiest u A-kwaliteit als uw pallets zichtbaar zijn voor klanten, u werkt in retail of presentatie, of u nette magazijnopslag wilt. Populair bij groothandels en distributeurs in Breda.",
@@ -552,8 +554,7 @@ export const breda = defineCityPage({
     ],
   },
 
-  qualityText:
-    "Europallets leveren wij als A-kwaliteit (1e keus): lichte of blanke pallets met nette uitstraling. B-kwaliteit (2e keus): donkere gebruikte pallets met normale slijtage, technisch volledig bruikbaar en voordeliger.",
+  qualityText: EUROPALLET_QUALITY_COMBINED_TEXT,
 
   exportText:
     "Voor export buiten de EU leveren wij HT-gestempelde pallets volgens ISPM 15. Beschikbaar op aanvraag voor bedrijven in Breda die exporteren via Moerdijk, Rotterdam of Antwerpen.",
@@ -691,8 +692,7 @@ export const breda = defineCityPage({
       },
       {
         question: "Wat is het verschil tussen A-kwaliteit en B-kwaliteit europallets?",
-        answer:
-          "A-kwaliteit (1e keus) zijn lichte of blanke pallets met nette uitstraling — ideaal voor retail en presentatie. B-kwaliteit (2e keus) zijn donkere gebruikte pallets, technisch bruikbaar en voordeliger.",
+        answer: europalletQualityDifferenceAnswer("Breda"),
       },
       {
         question: "Kunnen jullie grote partijen leveren op Hazeldonk?",

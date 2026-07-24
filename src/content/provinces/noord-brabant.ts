@@ -5,6 +5,11 @@
  * Nieuwe provincies kopiëren deze structuur en vullen alleen de content aan.
  */
 import type { ProvinceTemplatePage } from "../provinceTypes";
+import {
+  EUROPALLET_HT_EXPORT_NOTE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+  europalletQualityDifferenceAnswer,
+} from "../shared/europalletQuality";
 
 export const noordBrabant: ProvinceTemplatePage = {
   path: "/noord-brabant",
@@ -73,7 +78,7 @@ export const noordBrabant: ProvinceTemplatePage = {
       },
       {
         title: "Europallets",
-        text: "A-kwaliteit (lichte of blanke pallets) en B-kwaliteit (donkere gebruikte pallets). Ook HT-gestempeld voor export buiten de EU volgens ISPM 15.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Europallets",
       },
@@ -94,7 +99,7 @@ export const noordBrabant: ProvinceTemplatePage = {
     items: [
       {
         title: "Europallets",
-        text: "A-kwaliteit (eerste keus): lichte of blanke pallets. B-kwaliteit (tweede keus): donkere gebruikte pallets, technisch bruikbaar. HT-gestempeld voor export buiten de EU.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Meer over Europallets",
       },

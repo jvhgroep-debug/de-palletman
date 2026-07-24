@@ -2,6 +2,10 @@
  * Tekstfragmenten voor de Local Content Engine.
  * Placeholders: {city} {province} {region} {areas} {roads} {places} {sectors} {port} {hotspot} {dc} {transport}
  */
+import {
+  europalletQualityFaqAnswerTemplate,
+  europalletQualityFragments,
+} from "../shared/europalletQuality.ts";
 export const FRAGMENT_COUNTS = {
   h1: 14,
   heroSubtitle: 10,
@@ -167,14 +171,7 @@ export const TRANSPORT_FRAGMENTS = [
   "Eigen wagenpark, eigen planning. In {city} bent u geen nummer in een landelijk systeem.",
 ];
 
-export const QUALITY_FRAGMENTS = [
-  "Europallets leveren wij als A-kwaliteit (eerste keus): lichte of blanke pallets met een nette uitstraling. B-kwaliteit (tweede keus): donkere gebruikte pallets met normale slijtage — technisch bruikbaar en voordeliger.",
-  "A-kwaliteit past wanneer uitstraling telt; B-kwaliteit wanneer de pallet functioneel moet zijn tegen lagere kosten. Wij laten u beide zien en adviseren eerlijk.",
-  "Geen verborgen gebreken: wij beoordelen pallets op draagkracht en bruikbaarheid. A en B zijn bij ons duidelijk gedefinieerd.",
-  "Eerste keus europallets zijn licht of blank; tweede keus donkerder met gebruikssporen — nog steeds geschikt voor logistiek in {city}.",
-  "Wij verkopen geen rommel. B-kwaliteit betekent: gebruikt, maar technisch in orde voor opslag en transport.",
-  "Vraag naar A-kwaliteit als uw klant of proces dat vraagt; kies B-kwaliteit voor interne stromen — bespaart kosten in {city}.",
-];
+export const QUALITY_FRAGMENTS = europalletQualityFragments();
 
 export const EXPORT_FRAGMENTS = [
   "Voor export buiten de Europese Unie kunnen HT-gestempelde pallets volgens ISPM 15 vereist zijn. Vraag naar beschikbaarheid en planning vanuit {city}.",
@@ -237,7 +234,7 @@ export const FAQ_ANSWER_TEMPLATES = [
   "Ja, wij werken met grote én kleinere partijen. Bezorgen uitsluitend aan bedrijven in {city}.",
   "Ja, wij kopen pallets in van bedrijven én particulieren in {city}. Wij halen op met eigen transport.",
   "Dat hangt af van type, kwaliteit en onze planning. Neem contact op — in {city} proberen wij kort op de bal te spelen.",
-  "A-kwaliteit: lichte of blanke europallets, nette uitstraling. B-kwaliteit: donkerder, gebruikssporen, technisch bruikbaar en voordeliger.",
+  europalletQualityFaqAnswerTemplate(),
   "HT-gestempelde europallets volgens ISPM 15 zijn beschikbaar op aanvraag voor export buiten de EU vanuit {city}.",
   "Ja, wij zijn actief op en rond {areas} in {city}. Ophalen en bezorgen op afspraak.",
   "Wij geven een heldere prijs op basis van type, kwaliteit en aantal. Geen verrassingen achteraf voor klanten in {city}.",

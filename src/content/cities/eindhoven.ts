@@ -1,6 +1,14 @@
 import { defineCityPage } from "../cityTypes";
 import type { CityPageExtended } from "../cityTypes";
 import { getCanonicalUrl } from "../siteConfig";
+import {
+  EUROPALLET_A_QUALITY_TEXT,
+  EUROPALLET_A_QUALITY_TITLE,
+  EUROPALLET_B_QUALITY_TEXT,
+  EUROPALLET_B_QUALITY_TITLE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+  europalletQualityDifferenceAnswer,
+} from "../shared/europalletQuality";
 import { cityQuoteForm } from "./shared/cityQuoteForm";
 
 const cityName = "Eindhoven";
@@ -51,14 +59,14 @@ const extended: CityPageExtended = {
     columns: 2,
     items: [
       {
-        title: "A-kwaliteit — 1e keus",
-        text: "Lichte of blanke europallets voor nette opslag en presentatie. Populair bij tech- en productiebedrijven in Eindhoven.",
+        title: EUROPALLET_A_QUALITY_TITLE,
+        text: EUROPALLET_A_QUALITY_TEXT,
         href: "/europallets",
         linkLabel: "Meer over europallets",
       },
       {
-        title: "B-kwaliteit — 2e keus",
-        text: "Donkere gebruikte europallets — technisch bruikbaar en voordeliger. Geschikt voor intern transport op Flight Forum en De Hurk.",
+        title: EUROPALLET_B_QUALITY_TITLE,
+        text: EUROPALLET_B_QUALITY_TEXT,
         href: "/europallets",
         linkLabel: "Kwaliteitsverschil bekijken",
       },
@@ -296,8 +304,7 @@ export const eindhoven = defineCityPage({
     ],
   },
 
-  qualityText:
-    "Eerste keus (A-kwaliteit): lichte of blanke europallets. Tweede keus (B-kwaliteit): donkere gebruikte pallets met normale slijtage, technisch volledig bruikbaar voor productie en logistiek.",
+  qualityText: EUROPALLET_QUALITY_COMBINED_TEXT,
 
   exportText:
     "Voor internationale zendingen buiten de EU leveren wij HT-gestempelde pallets volgens ISPM 15. Beschikbaar op aanvraag voor bedrijven in Eindhoven en Brainport.",
@@ -403,7 +410,7 @@ export const eindhoven = defineCityPage({
       {
         question: "Wat is het verschil tussen A- en B-kwaliteit europallets?",
         answer:
-          "A-kwaliteit (1e keus) zijn lichte of blanke pallets. B-kwaliteit (2e keus) zijn donkere gebruikte pallets — technisch bruikbaar en voordeliger.",
+          europalletQualityDifferenceAnswer("Eindhoven"),
       },
       {
         question: "Kunnen jullie ook kleine partijen bezorgen in Eindhoven?",

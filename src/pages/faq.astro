@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero.astro";
 import PageIntro from "../components/PageIntro.astro";
 import PageFaq from "../components/PageFaq.astro";
 import PageCta from "../components/PageCta.astro";
+import { europalletQualityDifferenceAnswer } from "../content/shared/europalletQuality";
 
 const faqItems = [
   {
@@ -23,8 +24,7 @@ const faqItems = [
   },
   {
     question: "In welke kwaliteiten leveren jullie Europallets?",
-    answer:
-      "Wij leveren Europallets in A-kwaliteit (eerste keus): lichte of blanke pallets met een nette uitstraling, en B-kwaliteit (tweede keus): donkere gebruikte pallets met normale gebruikssporen maar technisch volledig bruikbaar.",
+    answer: europalletQualityDifferenceAnswer(),
   },
   {
     question: "Leveren jullie HT-gestempelde pallets voor export?",

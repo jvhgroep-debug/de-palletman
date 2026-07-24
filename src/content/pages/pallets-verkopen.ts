@@ -12,6 +12,10 @@ import {
   serviceTrust,
   standardInternalLinks,
 } from "./shared/serviceDefaults";
+import {
+  EUROPALLET_A_QUALITY_TEXT,
+  EUROPALLET_B_QUALITY_TEXT,
+} from "../shared/europalletQuality";
 
 export const palletsVerkopen: ServiceTemplatePage = {
   path: "/pallets-verkopen",
@@ -93,7 +97,7 @@ export const palletsVerkopen: ServiceTemplatePage = {
         },
         {
           title: "Conditie",
-          text: "Beschrijf de staat: licht/donker, gebroken planken, vochtig of droog. Wij beoordelen eerlijk ter plaatse.",
+          text: "Beschrijf de staat: licht/donker, vochtig of droog. Wij beoordelen eerlijk ter plaatse.",
         },
         {
           title: "Locatie",
@@ -264,9 +268,9 @@ export const palletsVerkopen: ServiceTemplatePage = {
       title: "Hoe beoordelen wij uw partij?",
       intro: "Wij kijken naar type, conditie en aantal — en geven een eerlijke prijs.",
       items: [
-        { title: "Visuele inspectie", text: "Bij ophalen beoordelen wij de staat van elke partij — losse planken, breuken en vervorming." },
+        { title: "Visuele inspectie", text: "Bij ophalen beoordelen wij type, kwaliteit en bruikbaarheid van elke partij." },
         { title: "Eerlijke prijs", text: "Onze prijsopgave is gebaseerd op type, conditie, aantal en locatie — transparant en zonder verrassingen." },
-        { title: "A- en B-kwaliteit", text: "Lichte (A) en donkere (B) europallets — wij betalen passend bij conditie." },
+        { title: "A- en B-kwaliteit", text: `${EUROPALLET_A_QUALITY_TEXT} ${EUROPALLET_B_QUALITY_TEXT}` },
         { title: "Gemixte partijen", text: "Verschillende types of kwaliteiten? Wij beoordelen de totale partij." },
         { title: "Snelle afhandeling", text: "Na ophalen handelen wij de verkoop snel af — betaling volgens afspraak." },
         { title: "Geen gedoe", text: "Eén contactpersoon, duidelijke afspraken — van prijsopgave tot betaling." },

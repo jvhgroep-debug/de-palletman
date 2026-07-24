@@ -1,4 +1,9 @@
 import type { ProvinceTemplatePage } from "../provinceTypes";
+import {
+  EUROPALLET_HT_EXPORT_NOTE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+  europalletQualityDifferenceAnswer,
+} from "../shared/europalletQuality";
 
 export const utrecht: ProvinceTemplatePage = {
   path: "/utrecht",
@@ -67,7 +72,7 @@ export const utrecht: ProvinceTemplatePage = {
       },
       {
         title: "Europallets",
-        text: "A-kwaliteit (lichte of blanke pallets) en B-kwaliteit (donkere gebruikte pallets). HT-gestempeld voor export buiten de EU volgens ISPM 15.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Europallets",
       },
@@ -88,7 +93,7 @@ export const utrecht: ProvinceTemplatePage = {
     items: [
       {
         title: "Europallets",
-        text: "De standaard voor logistiek. A-kwaliteit (eerste keus): lichte of blanke pallets. B-kwaliteit (tweede keus): donkere gebruikte pallets.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Meer over Europallets",
       },
@@ -170,7 +175,7 @@ export const utrecht: ProvinceTemplatePage = {
       {
         question: "Welke europallet-kwaliteiten leveren jullie?",
         answer:
-          "A-kwaliteit (eerste keus): lichte of blanke pallets. B-kwaliteit (tweede keus): donkere gebruikte pallets, technisch bruikbaar. Voor export buiten de EU: HT-gestempeld volgens ISPM 15.",
+          `${europalletQualityDifferenceAnswer("Utrecht")} Voor export buiten de EU: HT-gestempeld volgens ISPM 15.`,
       },
       {
         question: "Hoe snel kunnen jullie leveren in Utrecht?",

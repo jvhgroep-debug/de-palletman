@@ -1,4 +1,6 @@
 /** Handmatig goedgekeurde content voor teststeden — overschrijft gegenereerde content. */
+import { EUROPALLET_QUALITY_COMBINED_TEXT } from "../../src/content/shared/europalletQuality.ts";
+
 export const PREMIUM_CITY_ROWS: Record<string, Record<string, string>> = {
   breda: {
     province: "noord-brabant",
@@ -21,8 +23,7 @@ export const PREMIUM_CITY_ROWS: Record<string, Record<string, string>> = {
       "Voor bedrijven in Breda leveren wij europallets, blokpallets en wegwerppallets. Europallets zijn het meest gevraagd voor logistiek en distributie; blokpallets voor zware ladingen; wegwerppallets voor eenmalig transport of export.",
     transport:
       "Met eigen transport halen wij pallets op bij bedrijven en particulieren in Breda en West-Brabant. Bezorgen doen wij uitsluitend aan bedrijven — flexibel ingepland op uw locatie of bedrijventerrein.",
-    quality:
-      "Europallets als A-kwaliteit (eerste keus): lichte of blanke pallets met een nette uitstraling. B-kwaliteit (tweede keus): donkere gebruikte pallets met normale gebruikssporen, technisch volledig bruikbaar en voordeliger.",
+    quality: EUROPALLET_QUALITY_COMBINED_TEXT,
     export:
       "Voor export buiten de Europese Unie kunnen HT-gestempelde pallets volgens ISPM 15 nodig zijn. Vraag ons naar beschikbaarheid en planning voor zendingen vanuit Breda.",
     ctaTitle: "Pallets nodig in Breda?",
@@ -64,8 +65,7 @@ export const PREMIUM_CITY_ROWS: Record<string, Record<string, string>> = {
       "Bedrijven in Tilburg kiezen vaak voor europallets bij distributie en opslag, blokpallets bij zware ladingen en wegwerppallets voor eenmalig vervoer. Wij adviseren graag welk type past bij uw situatie.",
     transport:
       "Ophalen bij bedrijven en particulieren in Tilburg en omliggende kernen. Bezorgen uitsluitend aan bedrijven — ingepland met ons eigen wagenpark, ook op bedrijventerreinen Vossenberg, Kraaiven en Loven.",
-    quality:
-      "A-kwaliteit (eerste keus): lichte of blanke europallets. B-kwaliteit (tweede keus): donkere gebruikte pallets, technisch bruikbaar en geschikt voor logistiek en opslag in Tilburg.",
+    quality: EUROPALLET_QUALITY_COMBINED_TEXT,
     export:
       "HT-gestempelde europallets volgens ISPM 15 zijn beschikbaar voor export buiten de EU. Vraag naar beschikbaarheid en planning vanuit Tilburg.",
     ctaTitle: "Pallets nodig in Tilburg?",
@@ -107,8 +107,7 @@ export const PREMIUM_CITY_ROWS: Record<string, Record<string, string>> = {
       "In Eindhoven zijn europallets het meest gevraagd voor logistiek en opslag, blokpallets voor zware industriële ladingen en wegwerppallets voor export of eenmalig transport. Wij denken mee over de juiste keuze voor uw bedrijf.",
     transport:
       "Met eigen transport halen wij pallets op in Eindhoven, Veldhoven, Best en omliggende kernen. Bezorgen uitsluitend aan bedrijven — ook op terreinen als De Hurk, Flight Forum en GDC Acht.",
-    quality:
-      "Eerste keus (A-kwaliteit): lichte of blanke europallets. Tweede keus (B-kwaliteit): donkere gebruikte pallets met normale slijtage, technisch volledig bruikbaar voor productie en logistiek.",
+    quality: EUROPALLET_QUALITY_COMBINED_TEXT,
     export:
       "Voor internationale zendingen buiten de EU leveren wij HT-gestempelde pallets volgens ISPM 15. Beschikbaar op aanvraag voor bedrijven in Eindhoven en Brainport.",
     ctaTitle: "Pallets nodig in Eindhoven?",

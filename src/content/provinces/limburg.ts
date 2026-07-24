@@ -1,4 +1,8 @@
 import type { ProvinceTemplatePage } from "../provinceTypes";
+import {
+  EUROPALLET_HT_EXPORT_NOTE,
+  EUROPALLET_QUALITY_COMBINED_TEXT,
+} from "../shared/europalletQuality";
 
 export const limburg: ProvinceTemplatePage = {
   path: "/limburg",
@@ -67,7 +71,7 @@ export const limburg: ProvinceTemplatePage = {
       },
       {
         title: "Europallets",
-        text: "A-kwaliteit (lichte of blanke pallets) en B-kwaliteit (donkere gebruikte pallets). HT-gestempeld voor export buiten de EU.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Europallets",
       },
@@ -88,7 +92,7 @@ export const limburg: ProvinceTemplatePage = {
     items: [
       {
         title: "Europallets",
-        text: "De meest gevraagde pallet. Eerste keus (A): lichte of blanke pallets. Tweede keus (B): donkere gebruikte pallets. HT-gestempeld voor export.",
+        text: `${EUROPALLET_QUALITY_COMBINED_TEXT} ${EUROPALLET_HT_EXPORT_NOTE}`,
         href: "/europallets",
         linkLabel: "Meer over Europallets",
       },
