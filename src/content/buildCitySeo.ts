@@ -1,4 +1,5 @@
-import { getCanonicalUrl, getDefaultOgImageUrl, SITE_CONFIG } from "./siteConfig";
+import { getCanonicalUrl, SITE_CONFIG } from "./siteConfig";
+import { getHeroImageAbsoluteUrl } from "./shared/heroImage";
 import type { CityContentMaster } from "./cityTypes";
 import type { ResolvedPageSeo } from "./buildSeo";
 
@@ -79,9 +80,7 @@ export function resolveCityPageSeo(page: CityContentMaster): ResolvedPageSeo {
   const canonical = page.canonicalUrl ?? getCanonicalUrl(page.path);
   const ogTitle = page.openGraph?.title ?? page.metaTitle;
   const ogDescription = page.openGraph?.description ?? page.metaDescription;
-  const ogImage = page.imageFilename
-    ? `${SITE_CONFIG.url}/images/${page.imageFilename}`
-    : getDefaultOgImageUrl();
+  const ogImage = getHeroImageAbsoluteUrl(SITE_CONFIG.url);
 
   return {
     metaTitle: page.metaTitle,

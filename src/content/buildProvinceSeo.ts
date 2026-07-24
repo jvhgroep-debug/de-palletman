@@ -1,4 +1,5 @@
-import { getCanonicalUrl, getDefaultOgImageUrl, SITE_CONFIG } from "./siteConfig";
+import { getCanonicalUrl, SITE_CONFIG } from "./siteConfig";
+import { getHeroImageAbsoluteUrl } from "./shared/heroImage";
 import type { ProvinceContentMaster } from "./provinceTypes";
 import type { ResolvedPageSeo } from "./buildSeo";
 
@@ -50,7 +51,7 @@ export function resolveProvincePageSeo(page: ProvinceContentMaster): ResolvedPag
   const canonical = page.seo.canonical ?? getCanonicalUrl(page.path);
   const ogTitle = page.seo.openGraph?.title ?? page.seo.metaTitle;
   const ogDescription = page.seo.openGraph?.description ?? page.seo.metaDescription;
-  const ogImage = page.seo.openGraph?.image ?? getDefaultOgImageUrl();
+  const ogImage = getHeroImageAbsoluteUrl(SITE_CONFIG.url);
 
   return {
     metaTitle: page.seo.metaTitle,

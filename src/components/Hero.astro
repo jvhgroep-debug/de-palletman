@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import heroImage from "../assets/images/hero-de-palletman.png";
+import { HERO_IMAGE_ALT, HERO_IMAGE_PATH } from "../content/shared/heroImage";
 
 const features = [
   {
@@ -174,15 +173,15 @@ const features = [
   </div>
 
   <div class="hero__media" aria-hidden="true">
-    <Image
-      src={heroImage}
-      alt=""
+    <img
+      src={HERO_IMAGE_PATH}
+      alt={HERO_IMAGE_ALT}
       class="hero__image"
+      width="1280"
+      height="720"
       loading="eager"
       fetchpriority="high"
       decoding="async"
-      widths={[480, 640, 768, 1024, 1280, 1536]}
-      sizes="(max-width: 767px) 100vw, 57vw"
     />
   </div>
 
@@ -193,7 +192,7 @@ const features = [
   </div>
 </section>
 
-<style define:vars={{ heroBg: `url(${heroImage.src})` }}>
+<style define:vars={{ heroBg: `url('${HERO_IMAGE_PATH}')` }}>
   .hero {
     position: relative;
     display: block;
@@ -262,7 +261,7 @@ const features = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 42% center;
+    object-position: center;
     border-radius: 0;
   }
 

@@ -1,15 +1,15 @@
 ---
-import HeroImage from "./HeroImage.astro";
+import PageHeroImage from "./PageHeroImage.astro";
+import { HERO_IMAGE_ALT } from "../content/shared/heroImage";
 
 interface Props {
   eyebrow: string;
   title: string;
   subtitle: string;
-  imageFilename: string;
-  imageAlt: string;
+  imageAlt?: string;
 }
 
-const { eyebrow, title, subtitle, imageFilename, imageAlt } = Astro.props;
+const { eyebrow, title, subtitle, imageAlt = HERO_IMAGE_ALT } = Astro.props;
 ---
 
 <section class="page-hero" aria-labelledby="page-hero-heading">
@@ -20,7 +20,7 @@ const { eyebrow, title, subtitle, imageFilename, imageAlt } = Astro.props;
       <p class="page-hero__subtitle">{subtitle}</p>
     </div>
     <div class="page-hero__media">
-      <HeroImage filename={imageFilename} alt={imageAlt} aspectRatio="16 / 9" />
+      <PageHeroImage alt={imageAlt} />
     </div>
   </div>
 </section>
@@ -65,9 +65,15 @@ const { eyebrow, title, subtitle, imageFilename, imageAlt } = Astro.props;
 
   .page-hero__media {
     width: 100%;
+    min-height: 220px;
+    aspect-ratio: 16 / 9;
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
+  }
+
+  .page-hero__media :global(.hero-image) {
+    min-height: 100%;
   }
 
   @media (min-width: 768px) {
@@ -78,6 +84,10 @@ const { eyebrow, title, subtitle, imageFilename, imageAlt } = Astro.props;
     .page-hero__inner {
       grid-template-columns: 1fr 1fr;
       gap: var(--space-2xl);
+    }
+
+    .page-hero__media {
+      min-height: 280px;
     }
   }
 </style>
