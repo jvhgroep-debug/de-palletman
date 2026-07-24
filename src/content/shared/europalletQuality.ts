@@ -12,10 +12,56 @@ export const EUROPALLET_B_QUALITY_TEXT =
 export const EUROPALLET_A_QUALITY_TITLE = "A-kwaliteit — 1e keus";
 export const EUROPALLET_B_QUALITY_TITLE = "B-kwaliteit — 2e keus";
 
+export const EUROPALLET_A_IMAGE_FILENAME = "kwaliteit-a-europallets.png";
+export const EUROPALLET_B_IMAGE_FILENAME = "kwaliteit-b-europallets.png";
+export const EUROPALLET_A_IMAGE_PATH = `/images/${EUROPALLET_A_IMAGE_FILENAME}`;
+export const EUROPALLET_B_IMAGE_PATH = `/images/${EUROPALLET_B_IMAGE_FILENAME}`;
+
 export const EUROPALLET_A_IMAGE_ALT =
-  "Europallets A-kwaliteit — 1e keus, nette pallets";
+  "A-kwaliteit eerste keus europallets in lichte en nette staat";
 export const EUROPALLET_B_IMAGE_ALT =
-  "Europallets B-kwaliteit — 2e keus, gebruikte pallets";
+  "B-kwaliteit tweede keus europallets met normale gebruikssporen";
+
+export type EuropalletQualityGrade = "a" | "b";
+
+export const EUROPALLET_QUALITY_IMAGE_DIMENSIONS = {
+  a: { width: 1120, height: 747 },
+  b: { width: 1120, height: 747 },
+} as const;
+
+/** Centrale image cards voor A- en B-kwaliteit europallets. */
+export function europalletQualityImageCards(): {
+  quality: EuropalletQualityGrade;
+  title: string;
+  text: string;
+}[] {
+  return [
+    {
+      quality: "a",
+      title: EUROPALLET_A_QUALITY_TITLE,
+      text: EUROPALLET_A_QUALITY_TEXT,
+    },
+    {
+      quality: "b",
+      title: EUROPALLET_B_QUALITY_TITLE,
+      text: EUROPALLET_B_QUALITY_TEXT,
+    },
+  ];
+}
+
+export function getEuropalletQualityImage(quality: EuropalletQualityGrade) {
+  return quality === "a"
+    ? {
+        src: EUROPALLET_A_IMAGE_PATH,
+        alt: EUROPALLET_A_IMAGE_ALT,
+        ...EUROPALLET_QUALITY_IMAGE_DIMENSIONS.a,
+      }
+    : {
+        src: EUROPALLET_B_IMAGE_PATH,
+        alt: EUROPALLET_B_IMAGE_ALT,
+        ...EUROPALLET_QUALITY_IMAGE_DIMENSIONS.b,
+      };
+}
 
 /** Gecombineerde kwaliteitstekst voor qualityText-velden en CSV-kolommen. */
 export const EUROPALLET_QUALITY_COMBINED_TEXT = `${EUROPALLET_A_QUALITY_TEXT} ${EUROPALLET_B_QUALITY_TEXT}`;

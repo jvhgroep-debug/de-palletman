@@ -4,13 +4,12 @@
  */
 import type { ServiceTemplatePage } from "../types";
 import {
-  EUROPALLET_A_IMAGE_ALT,
   EUROPALLET_A_QUALITY_TEXT,
   EUROPALLET_A_QUALITY_TITLE,
-  EUROPALLET_B_IMAGE_ALT,
   EUROPALLET_B_QUALITY_TEXT,
   EUROPALLET_B_QUALITY_TITLE,
   europalletQualityDifferenceAnswer,
+  europalletQualityImageCards,
   europalletQualitySectionItems,
 } from "../shared/europalletQuality";
 
@@ -115,20 +114,7 @@ export const palletsKopen: ServiceTemplatePage = {
       title: "Europallet-kwaliteiten uitgelegd",
       intro:
         "Bij europallets kiest u de conditie die past bij uw toepassing en budget. Hieronder ziet u het verschil tussen A-kwaliteit (1e keus) en B-kwaliteit (2e keus). Beide zijn technisch volledig inzetbaar — het verschil zit uitsluitend in uitstraling, gebruikssporen en kleur.",
-      imageCards: [
-        {
-          filename: "kwaliteit-a.webp",
-          alt: EUROPALLET_A_IMAGE_ALT,
-          title: EUROPALLET_A_QUALITY_TITLE,
-          text: EUROPALLET_A_QUALITY_TEXT,
-        },
-        {
-          filename: "kwaliteit-b.webp",
-          alt: EUROPALLET_B_IMAGE_ALT,
-          title: EUROPALLET_B_QUALITY_TITLE,
-          text: EUROPALLET_B_QUALITY_TEXT,
-        },
-      ],
+      imageCards: europalletQualityImageCards(),
     },
 
     specifications: {

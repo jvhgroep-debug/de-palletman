@@ -1,9 +1,9 @@
 ---
-import HeroImage from "./HeroImage.astro";
+import EuropalletQualityImage from "./EuropalletQualityImage.astro";
+import type { EuropalletQualityGrade } from "../content/shared/europalletQuality";
 
 interface ImageCard {
-  filename: string;
-  alt: string;
+  quality: EuropalletQualityGrade;
   title: string;
   text: string;
 }
@@ -34,7 +34,7 @@ const { eyebrow, title, intro, items, id = "image-cards-heading", variant = "gra
       {
         items.map((item) => (
           <li class="page-image-cards__card">
-            <HeroImage filename={item.filename} alt={item.alt} aspectRatio="4 / 3" />
+            <EuropalletQualityImage quality={item.quality} aspectRatio="4 / 3" />
             <div class="page-image-cards__body">
               <h3 class="page-image-cards__card-title">{item.title}</h3>
               <p class="page-image-cards__card-text">{item.text}</p>

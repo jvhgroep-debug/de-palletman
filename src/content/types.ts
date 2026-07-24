@@ -46,9 +46,10 @@ export interface InternalLinkItem {
   href: string;
 }
 
+import type { EuropalletQualityGrade } from "./shared/europalletQuality";
+
 export interface ServiceImageCard {
-  filename: string;
-  alt: string;
+  quality: EuropalletQualityGrade;
   title: string;
   text: string;
 }
