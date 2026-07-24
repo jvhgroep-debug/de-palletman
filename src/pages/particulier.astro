@@ -1,0 +1,259 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import PageProcess from "../components/PageProcess.astro";
+import { SITE_CONFIG } from "../content/siteConfig";
+
+const title = "Pallets verkopen als particulier | De Palletman";
+const description =
+  "Heeft u gebruikte pallets over? De Palletman koopt pallets in van particulieren en bedrijven. Stuur foto's en aantallen via WhatsApp.";
+const canonical = "https://www.depalletman.nl/particulier/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: canonical,
+  inLanguage: "nl-NL",
+  isPartOf: {
+    "@type": "WebSite",
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.url,
+  },
+};
+
+const palletTypes = [
+  "Europallets",
+  "Blokpallets",
+  "Wegwerppallets",
+  "Grote en kleine aantallen",
+  "Alleen technisch bruikbare pallets",
+];
+---
+
+<PageLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  currentPath="/particulier"
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Particulier"
+    title="Pallets verkopen als particulier"
+    subtitle="Heeft u als particulier gebruikte pallets over? De Palletman koopt pallets in van particulieren en bedrijven. Vertel ons hoeveel pallets u heeft, om welk type het gaat en waar deze staan. Wij beoordelen de partij en laten weten wat mogelijk is."
+  />
+
+  <section class="particulier-notice" aria-label="Belangrijke melding">
+    <div class="particulier-notice__inner container">
+      <p class="particulier-notice__text">
+        <strong>Let op:</strong> wij verkopen geen pallets aan particulieren. De verkoop van pallets is
+        uitsluitend B2B.
+      </p>
+    </div>
+  </section>
+
+  <section class="particulier-types" aria-labelledby="particulier-types-heading">
+    <div class="particulier-types__inner container">
+      <h2 id="particulier-types-heading" class="particulier-types__title">
+        Welke pallets kopen wij in?
+      </h2>
+      <ul class="particulier-types__list">
+        {palletTypes.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <PageProcess
+    eyebrow="Stappenplan"
+    title="Hoe werkt het?"
+    intro=""
+    id="particulier-werkwijze-heading"
+    steps={[
+      {
+        title: "Stuur foto's en aantallen via WhatsApp",
+        text: "Deel hoeveel pallets u heeft, welk type het is en waar ze staan.",
+      },
+      {
+        title: "U ontvangt een beoordeling of prijsindicatie",
+        text: "Wij kijken naar type, conditie en aantal en laten weten wat mogelijk is.",
+      },
+      {
+        title: "Bij akkoord spreken we ophalen of aanleveren af",
+        text: "Na uw akkoord plannen wij ophalen of afleveren op locatie.",
+      },
+    ]}
+  />
+
+  <section class="page-cta" aria-labelledby="particulier-cta-heading">
+    <div class="page-cta__inner container">
+      <h2 id="particulier-cta-heading" class="page-cta__title">Pallets verkopen?</h2>
+      <p class="page-cta__text">
+        Stuur foto's, aantallen en locatie via WhatsApp — wij reageren zo snel mogelijk.
+      </p>
+      <div class="page-cta__actions">
+        <a
+          href="https://wa.me/31612345678"
+          class="page-cta__btn page-cta__btn--primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pallets verkopen via WhatsApp
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+        <a href="/contact" class="page-cta__btn page-cta__btn--secondary">
+          Contact opnemen
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .particulier-notice {
+    padding-block: var(--space-lg);
+    background-color: var(--color-navy);
+    border-block: 3px solid var(--color-gold);
+  }
+
+  .particulier-notice__text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-white);
+    max-width: 720px;
+  }
+
+  .particulier-notice__text strong {
+    color: var(--color-gold);
+  }
+
+  .particulier-types {
+    padding-block: var(--space-2xl);
+    background-color: var(--color-white);
+  }
+
+  .particulier-types__inner {
+    max-width: 720px;
+  }
+
+  .particulier-types__title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: var(--color-navy);
+    margin-bottom: var(--space-lg);
+  }
+
+  .particulier-types__list {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+  }
+
+  .particulier-types__list li::marker {
+    color: var(--color-gold);
+  }
+
+  .page-cta {
+    padding-block: var(--space-3xl);
+    background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 100%);
+  }
+
+  .page-cta__inner {
+    text-align: center;
+    max-width: 720px;
+  }
+
+  .page-cta__title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--color-white);
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+  }
+
+  .page-cta__text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: var(--space-xl);
+  }
+
+  .page-cta__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: stretch;
+  }
+
+  .page-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast), transform var(--transition-fast),
+      border-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  .page-cta__btn--primary {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  .page-cta__btn--primary:hover {
+    background-color: var(--color-gold-hover);
+    transform: translateY(-2px);
+  }
+
+  .page-cta__btn--secondary {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-blue);
+  }
+
+  .page-cta__btn--secondary:hover {
+    background-color: var(--color-blue);
+    color: var(--color-navy);
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: 640px) {
+    .page-cta__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .page-cta__btn {
+      flex: 0 1 auto;
+      min-width: 220px;
+    }
+  }
+</style>
