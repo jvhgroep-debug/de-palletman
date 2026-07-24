@@ -12,7 +12,7 @@ import PageServiceConversion from "./PageServiceConversion.astro";
 import PageImageCards from "./PageImageCards.astro";
 import PageServiceCtaBanner from "./PageServiceCtaBanner.astro";
 import PageQuoteForm from "./PageQuoteForm.astro";
-import HeroImage from "./HeroImage.astro";
+import TransportImage from "./TransportImage.astro";
 import type { ContentMasterPage } from "../content/types";
 import { mapContentMasterToServicePage } from "../content/mapToServicePage";
 import { resolvePageSeo } from "../content/buildSeo";
@@ -198,11 +198,7 @@ const isMasterPage = Boolean(ext?.conversion);
               <p class="service-transport__intro">{ext.transport.intro}</p>
             </header>
             <div class="service-transport__media">
-              <HeroImage
-                filename={ext.transport.imageFilename}
-                alt={ext.transport.imageAlt}
-                aspectRatio="16 / 9"
-              />
+              <TransportImage aspectRatio="16 / 9" />
             </div>
           </div>
         </section>
