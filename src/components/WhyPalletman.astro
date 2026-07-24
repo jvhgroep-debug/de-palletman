@@ -1,6 +1,4 @@
 ---
-import ImagePlaceholder from "./ImagePlaceholder.astro";
-
 const usps = [
   "Betrouwbare afspraken — elke keer weer",
   "Scherpe prijzen zonder verrassingen",
@@ -45,7 +43,15 @@ const usps = [
     </div>
 
     <div class="why__media">
-      <ImagePlaceholder filename="over-ons-de-palletman.webp" aspectRatio="4 / 3" />
+      <img
+        src="/images/over-ons-de-palletman.png"
+        alt="De Palletman koopt en verkoopt gebruikte pallets voor bedrijven."
+        class="why__image"
+        width="1120"
+        height="747"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
 </section>
@@ -117,6 +123,15 @@ const usps = [
     width: 100%;
     max-width: 560px;
     margin-inline: auto;
+  }
+
+  .why__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-lg);
   }
 
   @media (min-width: 768px) {
